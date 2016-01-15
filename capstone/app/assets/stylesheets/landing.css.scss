@@ -1,0 +1,460 @@
+@font-face {
+  font-family: AlexBrush;
+  src: url(AlexBrush-Regular.ttf);
+}
+
+@font-face {
+  font-family: Didact;
+  src: url(DidactGothic.ttf);
+}
+
+header {
+  min-height: 710px;
+  min-width: 1100px;
+  background-image: url("landingCover2.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: -10px -8px 0px -8px;
+  overflow: hidden;
+}
+
+ul {
+  display: inline;
+  list-style-type: none;
+}
+
+ul li{
+  font-family: AlexBrush;
+  font-size: 40px;
+  float: left;
+}
+
+ul a {
+  text-decoration: none;
+  color: #000;
+  margin-left: 40px;
+}
+
+ul a:hover {
+  color: #fbbcca;
+}
+
+header hr {
+  width: 2px;
+  height: 30px;
+  background-color: #000;
+  float: left;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+nav {
+  width: 367px;
+  height: 51px;
+  border-radius: 18px;
+  margin-left: auto;
+  margin-right: 10px;
+  background-color: rgba(255,255,255,.7);
+  margin-top: 10px;
+}
+
+#logo {
+  width: 1000px;
+  background-color: rgba(255,255,255,.7);
+  border-radius: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  //margin-top: -30px;
+}
+
+#logo img {
+  padding: 15px;
+  width: 970px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signupFree {
+  margin-top: -45px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signupFree button {
+  font-family: AlexBrush;
+  font-size: 50px;
+  border-radius: 14px;
+  padding: 10px;
+  width: 400px;
+  background-color: #7587a1;
+  color: #fff;
+  cursor: pointer;
+}
+
+#signupFree button:hover {
+  background-color: #496787;
+}
+
+#IT {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 100px;
+  color: #7587a1;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#inviteTracker {
+  height: 710px;
+  width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -100px;
+}
+
+.title {
+  font-family: AlexBrush;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #420f55;
+}
+
+.desc {
+  font-family: Didact;
+  font-size: 24px;
+  color: #9871a8;
+}
+
+.feature {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  float: left;
+  padding: 50px;
+  margin-top: 60px;
+}
+
+.feature img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  margin-top: -40px;
+  border: 2px solid #fbbcca;
+}
+
+
+#budTrack {
+  background-image: url("allowanceForNow.jpg");
+  background-repeat: no-repeat;
+  height: 1000px;
+  overflow: hidden;
+  margin: -10px -8px 0px -8px;
+}
+
+#b {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 80px;
+  color: #420f55;
+  width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255,255,255,.9);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#budget {
+  height: 710px;
+  width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -80px;
+}
+
+.b_title {
+  font-family: AlexBrush;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #420f55;
+  background-color: rgba(255,255,255,.9);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.b_feature {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  float: left;
+  padding: 50px;
+  margin-top: 60px;
+}
+
+.b_feature img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  margin-top: -40px;
+  border: 2px solid #fbbcca;
+}
+
+#checklist {
+  height: 750px;
+  overflow: hidden;
+  width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.cl_title {
+  font-family: AlexBrush;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #7587a1;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.cl_feature {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  float: left;
+  padding: 50px;
+}
+
+.cl_feature img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-top: -40px;
+  border: 2px solid #fbbcca;
+  border-radius: 100%;
+}
+
+.cl_feature2 {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  float: left;
+  padding: 50px;
+}
+
+.cl_feature2 img {
+  width: 144px;
+  height: 144px;
+  padding: 10px;
+}
+
+#cl {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 100px;
+  color: #9871a8;
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#check {
+  overflow: hidden;
+  background-color: rgba(250,250,250,.9);
+  margin: 0px -8px 0px -8px;
+}
+
+#ideaFolder {
+  background-image: url("flower5.jpg");
+  background-repeat: no-repeat;
+  height: 1000px;
+  background-size: 100% 100%;
+  overflow: hidden;
+  margin: 0px -8px 0px -8px;
+}
+
+#if {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 100px;
+  color: #7587a1;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.if_title {
+  font-family: AlexBrush;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #420f55;
+}
+
+.if_desc {
+  font-family: Didact;
+  font-size: 24px;
+  color: #9871a8;
+}
+
+.if_feature {
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  float: left;
+  background-color: rgba(255,255,255,.9);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.if_feature img {
+  width: 400px;
+  height: 300px;
+  object-fit: contain;
+  margin-top: -40px;
+}
+
+.if {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 50px;
+  color: #420f55;
+  width: 298px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255,255,255,.9);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#ideas {
+  width: 520px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#vendors {
+  height: 1000px;
+}
+
+#ven {
+  width: 820px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#v {
+  font-family: AlexBrush;
+  font-size: 70px;
+  margin-top: 40px;
+  color: #7587a1;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.v_title {
+  font-family: AlexBrush;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #9871a8;
+}
+
+.v_feature {
+  width: 820px;
+  height: 300px;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+  margin-top: -40px;
+}
+
+.v_feature img {
+  width: 800px;
+}
+
+.v_desc {
+  font-family: Didact;
+  font-size: 24px;
+  color: #420f55;
+  padding: 15px;
+}
+
+#looking {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#looking p {
+  font-family: Didact;
+  font-size: 20px;
+  color: #9871a8;
+  font-weight: bolder;
+  padding: 20px;
+}
+
+#looking a {
+  font-family: Didact;
+  font-size: 20px;
+  color: #7587a1;
+  text-decoration: none;
+}
+
+#looking a:hover {
+  color: #fbbcca;
+}
+
+footer {
+  background-color: #7587a1;
+  margin: 0px -8px 0px -8px;
+  overflow: hidden;
+  height: 150px;
+  text-align: right;
+}
+
+footer p {
+  padding-right: 20px;
+  margin-top: -230px;
+  font-family: Didact;
+  color: #fbbcca;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fbbcca;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+#congrats {
+  text-align: left;
+  margin-left: 135px;
+  font-family: AlexBrush;
+  font-size: 100px;
+  margin-top: 20px;
+  color: #fbbcca;
+  letter-spacing: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
