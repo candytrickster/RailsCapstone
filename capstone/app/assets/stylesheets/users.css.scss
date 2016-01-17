@@ -1,0 +1,128 @@
+@font-face {
+  font-family: AlexBrush;
+  src: url(AlexBrush-Regular.ttf);
+}
+
+@font-face {
+  font-family: Didact;
+  src: url(DidactGothic.ttf);
+}
+
+#sign {
+  background-image: url("signupCover2.jpg");
+  background-repeat: no-repeat;
+  height: 1080px;
+  background-size: 100% 100%;
+  overflow: hidden;
+  margin: 0px -8px 0px -8px;
+}
+
+#log {
+  background-image: url("signupCover.jpg");
+  background-repeat: no-repeat;
+  height: 1000px;
+  background-size: 100% 100%;
+  overflow: hidden;
+  margin: 0px -8px 0px -8px;
+}
+
+input[type='text'] {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 60px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+}
+
+input[type='password'] {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 60px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+}
+
+#title {
+  font-family: AlexBrush;
+  font-size: 100px;
+  color: #420f55;
+  margin-bottom: 50px;
+}
+
+section {
+  width: 700px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+#login {
+  width: 700px;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login #title {
+  margin-top: -80px;
+}
+
+#l {
+  width: 500px;
+  background-color: rgba(255,255,255,.9);
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#l input {
+  margin: 20px;
+
+}
+
+div {
+  margin-top: -25px;
+}
+
+p {
+  font-family: Didact;
+  color: #420f55;
+  margin-top: 45px;
+}
+
+#start {
+  font-size: 30px;
+  background-color: #7587a1;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#start:hover {
+  background-color: #496787;
+}
+
+a {
+  font-family: Didact;
+  text-decoration: none;
+  color: #420f55;
+}
+
+a:hover {
+  color: #7587a1;
+}
+
+#go {
+  font-size: 30px;
+  background-color: #7587a1;
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 15px 10px 15px;
+}
+
+#go:hover {
+  background-color: #496787;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag "users.css.scss" %>
+</head>
+<body id="sign">
+<section id="signup">
+  <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <p id="title">Congratulations!</p>
+      <div class="field">
+        <%= f.text_field :name, :placeholder=> 'Your Name (First and Last)' %>
+      </div>
+      <div class="field">
+        <%= f.text_field :fianceeName, :placeholder=> "Your Fiancee's Name (First and Last)"  %>
+      </div>
+      <div class="field">
+        <%= f.text_field :email, :placeholder=> 'Email'  %>
+      </div>
+      <div class="field">
+        <%= f.text_field :wedDate, :placeholder=> 'Date of Wedding (mm/dd/yyyy)'  %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, :placeholder=> 'Password'  %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password_confirmation, :placeholder=> 'Confirm Password'  %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Sign Up", :id => 'start' %>
+      </div>
+  <% end %>
+  <p>Already a member? <a href="/login">Login</a></p>
+</section>
+</body>
+</html>
