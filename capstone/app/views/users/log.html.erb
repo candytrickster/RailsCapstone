@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag "users.css.scss" %>
+</head>
+<body id="log">
+<section id="login">
+  <%= form_for(:user) do |f| %>
+
+
+      <p id="title">Welcome Back</p>
+      <div class="field">
+        <%= f.text_field :email, :placeholder=> 'Email' %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, :placeholder=> 'Password'  %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Log In", :id => 'go' %>
+      </div>
+  <% end %>
+  <p>Not a member? <a href="/signUp">Sign Up</a></p>
+</section>
+</body>
+</html>

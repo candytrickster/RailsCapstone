@@ -28,18 +28,41 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to '/home', notice: "Congratulations #{@user.name} and #{@user.fianceeName}!" }
+        format.html { redirect_to '/home'}
         format.json { render :show, status: :created, location: @user }
         cookies[:user_id] = @user.id
         cookies[:user_name] = @user.name
         cookies[:user_fname] = @user.fianceeName
         cookies[:user_date] = @user.wedDate
-        cookies[:usr_email] = @user.email
-
+        cookies[:user_email] = @user.email
+        cookies[:logged_in] = true;
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  #GET /login
+  def log
+    # get the log in page
+  end
+
+  #POST /login
+  def login
+    @user = User.find_by(email: params[:email])
+
+    if @user && @user.authenticate(params[:password])
+
+      cookies[:user_id] = @user.id
+      cookies[:user_name] = @user.name
+      cookies[:user_fname] = @user.fianceeName
+      cookies[:user_date] = @user.wedDate
+      cookies[:user_email] = @user.email
+      cookies[:logged_in] = true;
+      @message = 'Congratulations ' + @user.name + ' and ' + @user.fianceeName + '!'
+    else
+      # format.html { render :log }
     end
   end
 

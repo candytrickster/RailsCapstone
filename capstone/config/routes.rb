@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get '/' => 'landing#index'
   get '/yo' => 'landing#test'
 
-  get '/login' => 'signing#login'
+  get '/login' => 'users#log'
+  post '/login' => 'users#login'
   get '/signUp' => 'users#new'
 
   get '/home' => 'home#home'

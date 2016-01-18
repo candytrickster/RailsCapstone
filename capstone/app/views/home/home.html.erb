@@ -10,37 +10,37 @@
     <a href="/">Log out</a>
   </div>
   <nav>
-    <table>
-      <tr>
-        <td><a href="/home">Home</a></td>
-        <td><a href="/vendors">Vendors</a></td>
-        <td><a href="/invite">Invitation Tracker</a></td>
-        <td><a href="/seating">Seating</a> </td>
-      </tr>
-      <tr>
-        <td><a href="/budget">Budget</a> </td>
-        <td><a href="/attire">Attire</a> </td>
-        <td><a href="/ideaFolder">Idea Folder</a> </td>
-        <td><a href="/themes">Themes</a> </td>
-      </tr>
-      <tr>
-        <td><a href="/checklist">Checklist</a> </td>
-        <td><a href="/registry">Registry</a> </td>
-        <td><a href="/color">Color Schemes</a> </td>
-        <td><a href="/examples">Examples</a> </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><a href="/songs">Songs</a> </td>
-        <td><a href="/editCountdown">Edit Countdown</a> </td>
-        <td><a href="/faq">FAQ</a> </td>
-      </tr>
-    </table>
+        <table>
+          <tr>
+            <td><a href="/home">Home</a></td>
+            <td><a href="/vendors">Vendors</a></td>
+            <td><a href="/invite">Invitation Tracker</a></td>
+            <td><a href="/seating">Seating</a> </td>
+          </tr>
+          <tr>
+            <td><a href="/budget">Budget</a> </td>
+            <td><a href="/attire">Attire</a> </td>
+            <td><a href="/ideaFolder">Idea Folder</a> </td>
+            <td><a href="/themes">Themes</a> </td>
+          </tr>
+          <tr>
+            <td><a href="/checklist">Checklist</a> </td>
+            <td><a href="/registry">Registry</a> </td>
+            <td><a href="/color">Color Schemes</a> </td>
+            <td><a href="/examples">Examples</a> </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/songs">Songs</a> </td>
+            <td><a href="/editCountdown">Edit Countdown</a> </td>
+            <td><a href="/faq">FAQ</a> </td>
+          </tr>
+        </table>
   </nav>
 </header>
 <body>
-<h1>Congratulations <%= cookies["user_name"] %> and <%= cookies["user_fname"] %>!</h1>
-<h2><%= cookies["user_date"] %></h2>
+<h1><%= @message %></h1>
+<h2><%= cookies['user_date'] %></h2>
 <h2><%= @current_date %></h2>
 <h2><%= @d %></h2>
 <section id="countdown">
