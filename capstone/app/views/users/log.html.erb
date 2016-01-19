@@ -5,21 +5,21 @@
 </head>
 <body id="log">
 <section id="login">
-  <%= form_for(:user) do |f| %>
-
-
-      <p id="title">Welcome Back</p>
-      <div class="field">
-        <%= f.text_field :email, :placeholder=> 'Email' %>
-      </div>
-      <div class="field">
-        <%= f.password_field :password, :placeholder=> 'Password'  %>
-      </div>
-      <div class="actions">
-        <%= f.submit "Log In", :id => 'go' %>
-      </div>
-  <% end %>
+  <p id="title">Welcome Back</p>
+  <form accept-charset="UTF-8" action="/login" method="post">
+    <input name="utf8" type="hidden" value="&#x2713;">
+    <input name="authenticity_token" type="hidden"
+           value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=">
+    <input class="form-control" id="email"
+           name="email" type="text" placeholder="Email"/>
+    <input id="password" name="password"
+           type="password" placeholder="Password"/>
+    <br>
+    <input class="go" name="submit" type="submit"
+           value="Log in" />
+  </form>
   <p>Not a member? <a href="/signUp">Sign Up</a></p>
+
 </section>
 </body>
 </html>

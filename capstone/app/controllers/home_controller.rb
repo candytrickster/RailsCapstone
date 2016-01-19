@@ -5,11 +5,12 @@ class HomeController < ApplicationController
       cookName = cookies[:user_name]
       cookFname = cookies[:user_fname]
       @message = 'Congratulations ' + cookName + ' and ' + cookFname + '!'
-      @date = cookies['user_date']
+      @date = cookies[:user_date]
       @current_date = DateTime.now.strftime('%m/%d/%Y')
       # @d = Date.strptime(@date, '%m/%d/%Y')
       @d = Date.parse(@date)
       @d = @d.strftime('%m/%d/%Y')
+      @log = true
     end
 
   end

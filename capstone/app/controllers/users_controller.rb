@@ -50,20 +50,25 @@ class UsersController < ApplicationController
 
   #POST /login
   def login
-    @user = User.find_by(email: params[:email])
 
-    if @user && @user.authenticate(params[:password])
-
-      cookies[:user_id] = @user.id
-      cookies[:user_name] = @user.name
-      cookies[:user_fname] = @user.fianceeName
-      cookies[:user_date] = @user.wedDate
-      cookies[:user_email] = @user.email
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      cookies[:user_id] = user.id
+      cookies[:user_name] = user.name
+      cookies[:user_fname] = user.fianceeName
+      cookies[:user_date] = user.wedDate
+      cookies[:user_email] = user.email
       cookies[:logged_in] = true;
-      @message = 'Congratulations ' + @user.name + ' and ' + @user.fianceeName + '!'
+      # redirect_to :action => 'home'
+      @message =  'Hello World ' + user.name + ' ' + user.fianceeName
+      respond_to do |format|
+        format.html { redirect_to '/home'}
+      end
     else
-      # format.html { render :log }
+      # flash[:danger] = 'Invalid email/password combination' # Not quite right!
+      render 'log'
     end
+
   end
 
   # PATCH/PUT /users/1

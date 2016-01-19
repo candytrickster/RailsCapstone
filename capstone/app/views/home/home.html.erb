@@ -10,6 +10,7 @@
     <a href="/">Log out</a>
   </div>
   <nav>
+    <% if @log == true %>
         <table>
           <tr>
             <td><a href="/home">Home</a></td>
@@ -36,6 +37,7 @@
             <td><a href="/faq">FAQ</a> </td>
           </tr>
         </table>
+    <% end %>
   </nav>
 </header>
 <body>
