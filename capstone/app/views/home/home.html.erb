@@ -5,46 +5,37 @@
   <%= stylesheet_link_tag "home.css.scss" %>
 </head>
 <header>
-  <a href="/home"><img src="../../assets/logo2.png"></a>
+  <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
   <div id="logout">
     <a href="/">Log out</a>
   </div>
+  <h1 id="message"><%= @message %></h1>
   <nav>
     <% if @log == true %>
-        <table>
-          <tr>
-            <td><a href="/home">Home</a></td>
-            <td><a href="/vendors">Vendors</a></td>
-            <td><a href="/invite">Invitation Tracker</a></td>
-            <td><a href="/seating">Seating</a> </td>
-          </tr>
-          <tr>
-            <td><a href="/budget">Budget</a> </td>
-            <td><a href="/attire">Attire</a> </td>
-            <td><a href="/ideaFolder">Idea Folder</a> </td>
-            <td><a href="/themes">Themes</a> </td>
-          </tr>
-          <tr>
-            <td><a href="/checklist">Checklist</a> </td>
-            <td><a href="/registry">Registry</a> </td>
-            <td><a href="/color">Color Schemes</a> </td>
-            <td><a href="/examples">Examples</a> </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><a href="/songs">Songs</a> </td>
-            <td><a href="/editCountdown">Edit Countdown</a> </td>
-            <td><a href="/faq">FAQ</a> </td>
-          </tr>
-        </table>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/vendors">Vendors</a></li>
+          <li><a href="/budget">Budget</a></li>
+          <li><a href="/checklist">Checklist</a></li>
+          <li><a href="/invite">Invitation Tracker</a></li>
+          <li><a href="/ideaFolder">Idea Folder</a></li>
+          <li><a href="/registry">Registry</a></li>
+          <li><a href="/color">Color Schemes</a></li>
+          <li><a href="/examples">Examples</a></li>
+          <li><a href="/seating">Seating</a></li>
+          <li><a href="/attire">Attire</a></li>
+          <li><a href="/themes">Themes</a></li>
+          <li><a href="/songs">Songs</a></li>
+          <li><a href="/editCountdown">Edit Countdown</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
     <% end %>
   </nav>
 </header>
 <body>
-<h1><%= @message %></h1>
-<h2><%= cookies['user_date'] %></h2>
-<h2><%= @current_date %></h2>
-<h2><%= @d %></h2>
+<!--<h2><%= cookies['user_date'] %></h2>-->
+<!--<h2><%= @current_date %></h2>-->
+<!--<h2><%= @d %></h2>-->
 <section id="countdown">
   <div id="time">
     <p>009 Days&nbsp; 16 Hours&nbsp; 37 Minutes</p>

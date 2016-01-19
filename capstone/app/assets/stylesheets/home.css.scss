@@ -12,7 +12,7 @@
   width: 150px;
   text-align: center;
   margin-left: auto;
-  margin-top: -250px;
+  margin-top: -80px;
   margin-right: 15px;
 }
 
@@ -27,25 +27,38 @@
   color: #fbbcca;
 }
 
+#logo {
+  height: 100px;
+}
+
+#message {
+  margin-top: -40px;
+  text-align: center;
+}
+
 nav {
-  width: 1000px;
-  margin-left: auto;
-  margin-bottom: 30px;
+  height: 50px;
+  margin-top: 50px;
+  background-color: #75879f;
+  margin-left: -8px;
+  margin-right: -8px;
 }
 
-nav table {
+nav ul {
   font-family: Didact;
-  margin-top: 30px;
+  padding-top: 10px;
 }
 
-nav table td {
-  padding: 3px 10px 10px 130px;
+nav ul li {
+  display: inline;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 nav a {
   font-family: Didact;
   font-size: 20px;
-  color: #ab1e3e;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
@@ -59,7 +72,7 @@ nav a:hover {
   height: 550px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin: -10px -8px 0px -8px;
+  margin: 0px -8px 0px -8px;
   overflow: hidden;
 }
 
