@@ -3,12 +3,15 @@
 <head>
   <title>Your Day Your Way</title>
   <%= stylesheet_link_tag "home.css.scss" %>
+  <%= javascript_include_tag 'countdown.js' %>
 </head>
 <header>
   <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
-  <div id="logout">
-    <a href="/">Log out</a>
-  </div>
+  <% if @log == true %>
+    <div id="logout">
+      <a href="/">Log out</a>
+    </div>
+  <% end %>
   <h1 id="message"><%= @message %></h1>
   <nav>
     <% if @log == true %>
@@ -33,13 +36,50 @@
   </nav>
 </header>
 <body>
-<!--<h2><%= cookies['user_date'] %></h2>-->
-<!--<h2><%= @current_date %></h2>-->
-<!--<h2><%= @d %></h2>-->
+<script>
+  function CountDownTimer(dt, id)
+  {
+    var end = new Date(dt);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+      var now = new Date();
+      var distance = end - now;
+      if (distance < 0) {
+
+        clearInterval(timer);
+        document.getElementById(id).innerHTML = 'Congratulations!!!';
+        document.getElementById('till').innerHTML = 'Today is your special day';
+
+        return;
+      }
+      var days = Math.floor(distance / _day);
+      var hours = Math.floor((distance % _day) / _hour);
+      var minutes = Math.floor((distance % _hour) / _minute);
+      var seconds = Math.floor((distance % _minute) / _second);
+
+      document.getElementById(id).innerHTML = days + 'Days&nbsp; ';
+      document.getElementById(id).innerHTML += hours + 'Hours&nbsp; ';
+      document.getElementById(id).innerHTML += minutes + 'Minutes ';
+      document.getElementById('till').innerHTML = 'Till The Special Day';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+  }
+
+  CountDownTimer('<%= @date %>', 'time_till');
+
+</script>
 <section id="countdown">
   <div id="time">
-    <p>009 Days&nbsp; 16 Hours&nbsp; 37 Minutes</p>
-    <p>Till The Special Day</p>
+    <p id="time_till"></p>
+    <!--<p>009 Days&nbsp; 16 Hours&nbsp; 37 Minutes</p>-->
+    <p id="till"></p>
     <a href="/editCountdown">Edit</a>
   </div>
 </section>
