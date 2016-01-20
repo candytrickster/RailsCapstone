@@ -20,11 +20,11 @@
   font-family: AlexBrush;
   font-size: 40px;
   text-decoration: none;
-  color: #ab1e3e;
+  color: #B687C9;
 }
 
 #logout a:hover {
-  color: #fbbcca;
+  color: #D49EEB;
 }
 
 #logo {
@@ -34,11 +34,19 @@
 #message {
   margin-top: -40px;
   text-align: center;
+  font-family: AlexBrush;
+  color: #f283a5;
+  font-size: 50px;
+  letter-spacing: 2px;
+}
+
+#active a {
+  color: #fbbcca;
 }
 
 nav {
   height: 50px;
-  margin-top: 50px;
+  margin-top: -10px;
   background-color: #75879f;
   margin-left: -8px;
   margin-right: -8px;
@@ -184,3 +192,76 @@ footer a:hover {
   color: #fbbcca;
   letter-spacing: 5px;
 }
+
+#edit {
+  height: 550px;
+  width: 1200px;
+  text-align: center;
+  padding-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fce8ee;
+}
+
+input[type='text'] {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 60px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+}
+
+input[type='submit'] {
+  font-size: 25px;
+  background-color: #7587a1;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 15px 8px 15px;
+  margin-bottom: 30px;
+}
+
+input[type='submit']:hover {
+  background-color: #496787;
+}
+
+#edit a {
+  font-family: Didact;
+  text-decoration: none;
+  font-size: 20px;
+  color: #420f55;
+}
+
+#edit a:hover {
+  color: #9871a8;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
