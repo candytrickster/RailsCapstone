@@ -77,10 +77,12 @@
 </script>
 <section id="countdown">
   <div id="time">
-    <p id="time_till"></p>
-    <!--<p>009 Days&nbsp; 16 Hours&nbsp; 37 Minutes</p>-->
-    <p id="till"></p>
-    <a href="/editCountdown">Edit</a>
+    <% if @log == true %>
+      <p id="time_till"></p>
+      <!--<p>009 Days&nbsp; 16 Hours&nbsp; 37 Minutes</p>-->
+      <p id="till"></p>
+      <a href="/editCountdown">Edit</a>
+    <% end %>
   </div>
 </section>
 <section id="info">

@@ -8,8 +8,7 @@
   <p id="title">Welcome Back</p>
   <form accept-charset="UTF-8" action="/login" method="post">
     <input name="utf8" type="hidden" value="&#x2713;">
-    <input name="authenticity_token" type="hidden"
-           value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <input class="form-control" id="email"
            name="email" type="text" placeholder="Email"/>
     <input id="password" name="password"
