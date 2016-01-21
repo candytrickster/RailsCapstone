@@ -15,18 +15,52 @@
   <h1 id="message"><%= @message %></h1>
   <nav>
     <% if @log == true %>
-        <ul>
+        <ul id="menu">
           <li id="active"><a href="/home">Home</a></li>
-          <li><a href="/vendors">Vendors</a></li>
+          <li><a href="/vendors">Vendors</a>
+            <ul class="submenu">
+              <li><a href="">DJ</a></li>
+              <li><a href="Officiants"></a></li>
+              <li><a href="">Transportation</a></li>
+              <li><a href="">Catering</a></li>
+              <li><a href="">Decorations</a></li>
+              <li><a href="">Flowers</a></li>
+              <li><a href="">Photography/Videography</a></li>
+              <li><a href="">Venue</a></li>
+            </ul>
+          </li>
           <li><a href="/budget">Budget</a></li>
           <li><a href="/checklist">Checklist</a></li>
-          <li><a href="/invite">Invitation Tracker</a></li>
+          <li><a href="/invite">Invitation Tracker</a>
+            <ul class="submenu">
+              <li><a href="">Guest List</a></li>
+              <li><a href="">Create Invites</a></li>
+            </ul>
+          </li>
           <li><a href="/ideaFolder">Idea Folder</a></li>
           <li><a href="/registry">Registry</a></li>
-          <li><a href="/color">Color Schemes</a></li>
-          <li><a href="/examples">Examples</a></li>
+          <li><a href="/color">Color Schemes</a>
+            <ul class="submenu">
+              <li><a href="">Examples</a></li>
+              <li><a href="">Current&nbsp;&nbsp;Choices</a></li>
+            </ul>
+          </li>
+          <li><a href="/examples">Examples</a>
+            <ul class="submenu">
+              <li><a href="">Ceremony</a></li>
+              <li><a href="">Reception</a></li>
+            </ul>
+          </li>
           <li><a href="/seating">Seating</a></li>
-          <li><a href="/attire">Attire</a></li>
+          <li><a href="/attire">Attire</a>
+            <ul class="submenu">
+              <li><a href="">Bride</a></li>
+              <li><a href="">Bridesmaids</a></li>
+              <li><a href="">Groom</a></li>
+              <li><a href="">Groomsmen</a></li>
+              <li><a href="">Accessories</a></li>
+            </ul>
+          </li>
           <li><a href="/themes">Themes</a></li>
           <li><a href="/songs">Songs</a></li>
           <li><a href="/editCountdown">Edit Countdown</a></li>
@@ -63,9 +97,9 @@
       var minutes = Math.floor((distance % _hour) / _minute);
       var seconds = Math.floor((distance % _minute) / _second);
 
-      document.getElementById(id).innerHTML = days + 'Days&nbsp; ';
-      document.getElementById(id).innerHTML += hours + 'Hours&nbsp; ';
-      document.getElementById(id).innerHTML += minutes + 'Minutes ';
+      document.getElementById(id).innerHTML = days + ' Days&nbsp; ';
+      document.getElementById(id).innerHTML += hours + ' Hours&nbsp; ';
+      document.getElementById(id).innerHTML += minutes + ' Minutes ';
       document.getElementById('till').innerHTML = 'Till The Special Day';
     }
 

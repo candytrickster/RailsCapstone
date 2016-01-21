@@ -61,6 +61,7 @@ nav ul li {
   display: inline;
   padding-left: 20px;
   padding-right: 20px;
+  position:relative;
 }
 
 nav a {
@@ -73,6 +74,28 @@ nav a {
 
 nav a:hover {
   color: #fbbcca;
+}
+
+ul#menu ul{
+  position:absolute;
+  display:none;
+  padding:10px 0;
+}
+
+ul#menu li:hover ul{
+  display:block;
+  left:0;
+  background-color: #fbbcca;
+  border-radius: 14px;
+}
+
+ul#menu li:hover ul li{
+  display:block;
+  left:0;
+}
+
+ul#menu ul li a:hover{
+  color: #9871a8;
 }
 
 #countdown {
