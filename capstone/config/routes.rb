@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get '/invite' => 'guest_lists#index'
 
+  get '/createInvites' => 'guest_lists#make_invites'
+
   # get '/guest' => ''
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

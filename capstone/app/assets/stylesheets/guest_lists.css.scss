@@ -144,6 +144,7 @@ footer a:hover {
   margin-right: auto;
   background-color: #fce8ee;
   min-height: 620px;
+  overflow: hidden;
 }
 
 table {
@@ -210,7 +211,7 @@ input[type='submit']:hover {
 #add {
   width: 150px;
   padding: 10px;
-  margin: 20px 15px 0px auto;
+  margin: 20px 15px 50px auto;
   background-color: #7587a1;
   border-radius: 20px;
 }
@@ -219,8 +220,56 @@ input[type='submit']:hover {
   background-color: #53667c;
 }
 
+select {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 60px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+  height: 100%;
+}
 
+#new {
+  width: 1200px;
+  text-align: center;
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fce8ee;
+  min-height: 620px;
+}
 
+#new input[type='text'] {
+  width: 550px;
+}
+
+#new a {
+  font-family: Didact;
+  text-decoration: none;
+  font-size: 18px;
+  color: #420f55;
+}
+
+#new a:hover {
+  color: #9871a8;
+}
+
+#coming_soon {
+  width: 1200px;
+  text-align: center;
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fce8ee;
+  height: 620px;
+}
+
+#coming_soon p {
+  font-family: AlexBrush;
+  font-size: 70px;
+  color: #7587a1;
+}
 
 
 

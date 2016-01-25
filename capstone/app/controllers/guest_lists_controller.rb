@@ -19,10 +19,19 @@ class GuestListsController < ApplicationController
   def new
     @user = User.find_by(id: cookies[:user_id])
     @guest_list = @user.guest_lists.new
+    @message = 'New Guest'
+    @log = true
   end
 
   # GET /guest_lists/1/edit
   def edit
+    @message = 'Edit Guest'
+    @log = true
+  end
+
+  def make_invites
+    @message = 'Create Invitations'
+    @log = true
   end
 
   # POST /guest_lists
@@ -47,7 +56,7 @@ class GuestListsController < ApplicationController
   def update
     respond_to do |format|
       if @guest_list.update(guest_list_params)
-        format.html { redirect_to @guest_list, notice: 'Guest list was successfully updated.' }
+        format.html { redirect_to '/invite' }
         format.json { render :show, status: :ok, location: @guest_list }
       else
         format.html { render :edit }

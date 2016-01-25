@@ -1,5 +1,78 @@
-<h1>New guest_list</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', guest_lists_path %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Day Your Way</title>
+  <%= stylesheet_link_tag "home.css.scss" %>
+</head>
+<header>
+  <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
+  <% if @log == true %>
+      <div id="logout">
+        <a href="/">Log out</a>
+      </div>
+  <% end %>
+  <h1 id="message"><%= @message %></h1>
+  <nav>
+    <% if @log == true %>
+        <ul id="menu">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/vendors">Vendors</a>
+            <ul class="submenu">
+              <li><a href="">DJ</a></li>
+              <li><a href="Officiants"></a></li>
+              <li><a href="">Transportation</a></li>
+              <li><a href="">Catering</a></li>
+              <li><a href="">Decorations</a></li>
+              <li><a href="">Flowers</a></li>
+              <li><a href="">Photography/Videography</a></li>
+              <li><a href="">Venue</a></li>
+            </ul>
+          </li>
+          <li><a href="/budget">Budget</a></li>
+          <li><a href="/checklist">Checklist</a></li>
+          <li id="active"><a href="/invite">Invitation Tracker</a>
+            <ul class="submenu">
+              <li><a href="/invite">Guest List</a></li>
+              <li><a href="/createInvites">Create Invites</a></li>
+            </ul>
+          </li>
+          <li><a href="/ideaFolder">Idea Folder</a></li>
+          <li><a href="/registry">Registry</a></li>
+          <li><a href="/color">Important Dates</a>
+          <li><a href="/examples">Examples</a>
+            <ul class="submenu">
+              <li><a href="">Ceremony</a></li>
+              <li><a href="">Reception</a></li>
+              <li><a href="">Color&nbsp;&nbsp;Schemes</a></li>
+              <li><a href="">Themes</a></li>
+            </ul>
+          </li>
+          <li><a href="/seating">Seating</a></li>
+          <li><a href="/attire">Attire</a>
+            <ul class="submenu">
+              <li><a href="">Bride</a></li>
+              <li><a href="">Bridesmaids</a></li>
+              <li><a href="">Groom</a></li>
+              <li><a href="">Groomsmen</a></li>
+              <li><a href="">Accessories</a></li>
+            </ul>
+          </li>
+          <li><a href="/themes">Locations</a></li>
+          <li><a href="/songs">Songs</a></li>
+          <li><a href="/editCountdown">Edit Countdown</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+    <% end %>
+  </nav>
+</header>
+<body>
+<section id="new">
+  <%= render 'form' %>
+  <%= link_to 'Back', guest_lists_path %>
+</section>
+</body>
+<footer>
+  <p id="congrats">Congratulations!</p>
+  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a href="https://30865de19d880682c894f6235a5a1ba7199f7435-www.googledrive.com/host/0B85v5S0Z9FqXcEE0TVhyN0Q5dnM/">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
+</footer>
+</html>
