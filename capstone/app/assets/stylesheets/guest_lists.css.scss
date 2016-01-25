@@ -102,90 +102,6 @@ ul#menu ul li a:hover{
   color: #9871a8;
 }
 
-#countdown {
-  background-image: url("croppedWhiteBlueRing.jpg");
-  height: 550px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  margin: 0px -8px 0px -8px;
-  overflow: hidden;
-}
-
-#countdown p {
-  font-family: AlexBrush;
-  font-size: 70px;
-  color: #9871a8;
-}
-
-#time {
-  width: 900px;
-  text-align: center;
-  margin-left: 100px;
-  margin-right: auto;
-}
-
-#time a {
-  font-family: Didact;
-  color: #7587a1;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#time a:hover {
-  color: #f283a5;
-}
-
-#info {
-  background-color: #fce8ee;
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-}
-
-#info a {
-  text-decoration: none;
-  background-color: #7587a1;
-  color: #fbbcca;
-  border-radius: 14px;
-  padding: 15px;
-  font-weight: bold;
-
-}
-
-#info a:hover {
-  background-color: #f283a5;
-  color: #fff;
-
-}
-
-#info div {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 150px;
-  width: 600px;
-  text-align: center;
-}
-
-#info .title {
-  font-family: AlexBrush;
-  font-size: 50px;
-  color: #7587a1;
-}
-
-#info ul {
-  margin-left: 100px;
-  margin-top: -50px;
-  margin-bottom: 50px;
-  text-align: left;
-}
-
-#info ul li {
-  font-family: Didact;
-  color: #7587a1;
-}
-
 footer {
   background-color: #7587a1;
   margin: 0px -8px 0px -8px;
@@ -220,14 +136,42 @@ footer a:hover {
   letter-spacing: 5px;
 }
 
-#edit {
-  height: 550px;
+#guest_list {
   width: 1200px;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 40px;
   margin-left: auto;
   margin-right: auto;
   background-color: #fce8ee;
+  min-height: 620px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 1100px;
+  font-family: Didact;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  height: 50px;
+  font-size: 20px;
+  border: 2px solid #fff;
+}
+
+tr:nth-child(even){background-color: #e4cef4}
+
+th {
+  background-color: #9871a8;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 input[type='text'] {
@@ -252,17 +196,31 @@ input[type='submit']:hover {
   background-color: #496787;
 }
 
-#edit a {
+#guest_list a {
   font-family: Didact;
   text-decoration: none;
   font-size: 20px;
-  color: #420f55;
+  color: #fff;
+  width: 150px;
+  padding: 5px 13px 5px 13px;
+  background-color: #7587a1;
+  border-radius: 20px;
 }
 
-#edit a:hover {
-  color: #9871a8;
-
+#add {
+  width: 150px;
+  padding: 10px;
+  margin: 20px 15px 0px auto;
+  background-color: #7587a1;
+  border-radius: 20px;
 }
+
+#add:hover, #guest_list a:hover {
+  background-color: #53667c;
+}
+
+
+
 
 
 

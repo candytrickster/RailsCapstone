@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  has_many :guest_lists, dependent: :destroy
+
   validates :name, presence: true
   validates :fianceeName, presence: true
   validates :email, email_format: { message: "That doesn't look like an email address" }, uniqueness: true

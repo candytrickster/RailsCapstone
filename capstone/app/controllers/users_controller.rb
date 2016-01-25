@@ -35,6 +35,7 @@ class UsersController < ApplicationController
         cookies[:user_fname] = @user.fianceeName
         cookies[:user_date] = @user.wedDate
         cookies[:user_email] = @user.email
+        # cookies[:user] = {:id => ''+@user.id, :name => @user.name, :fname => @user.fianceeName, :wedDate => @user.wedDate, :email => @user.email}
         cookies[:logged_in] = true;
       else
         format.html { render :new }
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
       cookies[:user_fname] = user.fianceeName
       cookies[:user_date] = user.wedDate
       cookies[:user_email] = user.email
+      # cookies[:user] = {:id => user.id, :name => user.name, :fname => user.fianceeName, :wedDate => user.wedDate, :email => user.email}
       cookies[:logged_in] = true;
       # redirect_to :action => 'home'
       @message =  'Hello World ' + user.name + ' ' + user.fianceeName

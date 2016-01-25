@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :guest_lists
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -21,6 +23,10 @@ Rails.application.routes.draw do
 
   get '/editCountdown' => 'home#edit'
   post '/editCountdown' => 'home#updateDate'
+
+  get '/invite' => 'guest_lists#index'
+
+  # get '/guest' => ''
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

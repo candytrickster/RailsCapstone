@@ -1,0 +1,29 @@
+<%= form_for(@guest_list) do |f| %>
+  <% if @guest_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guest_list.errors.count, "error") %> prohibited this guest_list from being saved:</h2>
+
+      <ul>
+      <% @guest_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.text_field :name, :placeholder=> 'Guest Name' %>
+  </div>
+  <div class="field">
+    <%= f.text_field :relationship, :placeholder=> 'Relation To Guest' %>
+  </div>
+  <div class="field">
+    <%= f.text_field :email, :placeholder => 'Email (optional but needed for electronic invitations)' %>
+  </div>
+  <div class="field">
+    <%= f.collection_select :status, GuestListsController::STATUSES, :to_s, :to_s, :include_blank => false %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Create Guest' %>
+  </div>
+<% end %>

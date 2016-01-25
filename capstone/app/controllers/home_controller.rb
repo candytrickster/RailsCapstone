@@ -17,15 +17,6 @@ class HomeController < ApplicationController
   end
 
   def updateDate
-    # if(!cookies[:user_name].blank?)
-    #   @message = 'Congratulations ' + cookies[:user_name] + ' and ' + cookies[:user_fname] + '!'
-      # # if params[:date] ==
-      # cookies[:user_date] = params[:date]
-      # @log = true
-      # respond_to do |format|
-      #   format.html { redirect_to '/home'}
-      # end
-    # end
     @message = 'Edit Wedding Date'
     @log = true
     @user = User.find(cookies[:user_id])
@@ -39,6 +30,11 @@ class HomeController < ApplicationController
         render 'edit'
       end
 
+  end
+
+  def guest_list
+    @message = 'Guest List'
+    @log = true
   end
 
 end
