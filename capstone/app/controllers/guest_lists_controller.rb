@@ -34,6 +34,10 @@ class GuestListsController < ApplicationController
     @log = true
   end
 
+  def rsvp
+    
+  end
+
   # POST /guest_lists
   # POST /guest_lists.json
   def create

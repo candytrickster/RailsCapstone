@@ -87,10 +87,16 @@
               <td><%= guest_list.status %></td>
               <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>
               <td><%= link_to 'Delete', guest_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if !guest_list.email.blank? %>
+                  <td id="send"><%= link_to 'Send Email Invite', edit_guest_list_path(guest_list) %></td>
+              <% end %>
             </tr>
         <% end %>
       </tbody>
     </table>
+    <!--<section id="email_all">-->
+      <!--<%= link_to 'Send Email Invite To All', '/home' %>-->
+    <!--</section>-->
     <section id="add">
       <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add' %>
     </section>
