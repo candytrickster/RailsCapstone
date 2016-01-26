@@ -68,6 +68,8 @@
 <body>
 <section id="guest_list">
   <section id="list">
+    <section id="container">
+    </section>
     <table>
       <thead>
       <tr>
@@ -88,12 +90,15 @@
               <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>
               <td><%= link_to 'Delete', guest_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% if !guest_list.email.blank? %>
-                  <td id="send"><%= link_to 'Send Email Invite', edit_guest_list_path(guest_list) %></td>
+                  <td id="send"><%= link_to 'Send Email Invite', {:controller => 'guest_lists', :action => 'send_mail', :guest_id => guest_list.id }%> </td>
+              <% else %>
+                  <td> No Email To Send </td>
               <% end %>
             </tr>
         <% end %>
       </tbody>
     </table>
+
     <!--<section id="email_all">-->
       <!--<%= link_to 'Send Email Invite To All', '/home' %>-->
     <!--</section>-->
@@ -102,6 +107,81 @@
     </section>
   </section>
 </section>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+  $(function () {
+
+    $(document).ready(function () {
+
+      // Build the chart
+      $('#container').highcharts({
+        chart: {
+          backgroundColor: {
+            linearGradient: [0, 0, 250, 500],
+            stops: [
+              [0, 'rgba(48, 96, 48,0)'],
+              [1, 'rgba(0, 0, 0,0)']
+            ]
+          },
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+        },
+        title: {
+          text: "Guest's Statuses (out of <%= @guest_lists.count %> guests)"
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          name: 'Guests',
+          colorByPoint: true,
+          data: [{
+            name: "Haven't Asked Yet",
+            y: <%= @unsure %>
+          }, {
+            name: 'Coming to Both',
+            y: <%= @yes_both %>,
+            sliced: true,
+            selected: true
+          }, {
+            name: 'Coming to Ceremony Only',
+            y: <%= @yes_c %>
+          }, {
+            name: 'Coming to Reception Only',
+            y: <%= @yes_r %>
+          }, {
+            name: 'Might Come to Both',
+            y: <%= @maybe_both %>
+          }, {
+            name: 'Might Come to Ceremony Only',
+            y: <%= @maybe_c %>
+          }, {
+            name: 'Might Come to Reception Only',
+            y: <%= @maybe_r %>
+          }, {
+            name: 'Not Coming',
+            y: <%= @no %>
+          }]
+        }]
+      });
+    });
+  });
+</script>
+
 </body>
 <footer>
   <p id="congrats">Congratulations!</p>

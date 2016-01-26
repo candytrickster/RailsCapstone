@@ -143,7 +143,6 @@ footer a:hover {
   margin-left: auto;
   margin-right: auto;
   background-color: #fce8ee;
-  min-height: 620px;
   overflow: hidden;
 }
 
@@ -220,6 +219,14 @@ input[type='submit']:hover {
   background-color: #53667c;
 }
 
+#container {
+  width: 900px;
+  height: 450px;
+  margin: 0 auto;
+  background-color: #fce8ee;
+  padding-bottom: 20px;
+}
+
 //#email_all {
 //  width: 230px;
 //  padding: 10px;
@@ -266,7 +273,7 @@ select {
   color: #9871a8;
 }
 
-#coming_soon {
+#coming_soon{
   width: 1200px;
   text-align: center;
   padding-top: 40px;
@@ -277,10 +284,23 @@ select {
 }
 
 #coming_soon p {
-  font-family: AlexBrush;
-  font-size: 70px;
+  font-family: Didact;
+  font-size: 50px;
   color: #7587a1;
 }
+
+#coming_soon a {
+  font-family: Didact;
+  text-decoration: none;
+  font-size: 18px;
+  color: #420f55;
+}
+
+#coming_soon a:hover {
+  color: #9871a8;
+}
+
+
 
 
 

@@ -8,6 +8,15 @@ class GuestListsController < ApplicationController
     @guest_lists = GuestList.where('user_id' => cookies[:user_id])
     @message = 'Guest List'
     @log = true
+    @unsure = @guest_lists.where(:status => "Haven't Asked Yet").count
+    @yes_both = @guest_lists.where(:status => 'Coming to Ceremony and Reception').count
+    @yes_c = @guest_lists.where(:status => 'Coming to Ceremony Only').count
+    @yes_r = @guest_lists.where(:status => 'Coming to Reception Only').count
+    @maybe_both = @guest_lists.where(:status => 'Might Come to Ceremony and Reception').count
+    @maybe_c = @guest_lists.where(:status => 'Might Come to Ceremony Only').count
+    @maybe_r = @guest_lists.where(:status => 'Might Come to Reception Only').count
+    @no = @guest_lists.where(:status => 'Not Coming').count
+
   end
 
   # GET /guest_lists/1
@@ -35,7 +44,15 @@ class GuestListsController < ApplicationController
   end
 
   def rsvp
-    
+
+  end
+
+  def send_mail
+    @guest = GuestList.find(params[:guest_id])
+    @user = User.find(cookies[:user_id])
+    @message = 'Invitation Sent'
+    @log = true
+    Rsvp.rsvp_guest(@user,@guest).deliver
   end
 
   # POST /guest_lists
