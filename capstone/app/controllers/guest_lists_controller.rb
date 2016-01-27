@@ -49,10 +49,9 @@ class GuestListsController < ApplicationController
 
   def send_mail
     @guest = GuestList.find(params[:guest_id])
-    @user = User.find(cookies[:user_id])
     @message = 'Invitation Sent'
     @log = true
-    Rsvp.rsvp_guest(@user,@guest).deliver
+    RsvpMailer.guest_invite(@guest).deliver
   end
 
   # POST /guest_lists
