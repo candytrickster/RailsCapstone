@@ -9,6 +9,7 @@ class RsvpMailer < ActionMailer::Base
   def guest_invite(guest)
     @user = User.find(guest.user_id)
     @guest = guest
+    @url = "http://localhost:3000/invitation/#{@guest.id}"
 
     mail to: @guest.email, subject: "Wanna Come To My Wedding #{@guest.name}?"
   end

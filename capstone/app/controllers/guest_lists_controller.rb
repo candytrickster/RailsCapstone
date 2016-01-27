@@ -5,18 +5,19 @@ class GuestListsController < ApplicationController
   # GET /guest_lists
   # GET /guest_lists.json
   def index
-    @guest_lists = GuestList.where('user_id' => cookies[:user_id])
-    @message = 'Guest List'
-    @log = true
-    @unsure = @guest_lists.where(:status => "Haven't Asked Yet").count
-    @yes_both = @guest_lists.where(:status => 'Coming to Ceremony and Reception').count
-    @yes_c = @guest_lists.where(:status => 'Coming to Ceremony Only').count
-    @yes_r = @guest_lists.where(:status => 'Coming to Reception Only').count
-    @maybe_both = @guest_lists.where(:status => 'Might Come to Ceremony and Reception').count
-    @maybe_c = @guest_lists.where(:status => 'Might Come to Ceremony Only').count
-    @maybe_r = @guest_lists.where(:status => 'Might Come to Reception Only').count
-    @no = @guest_lists.where(:status => 'Not Coming').count
-
+    if(!cookies[:user_name].blank?)
+      @guest_lists = GuestList.where('user_id' => cookies[:user_id])
+      @message = 'Guest List'
+      @log = true
+      @unsure = @guest_lists.where(:status => "Haven't Asked Yet").count
+      @yes_both = @guest_lists.where(:status => 'Coming to Ceremony and Reception').count
+      @yes_c = @guest_lists.where(:status => 'Coming to Ceremony Only').count
+      @yes_r = @guest_lists.where(:status => 'Coming to Reception Only').count
+      @maybe_both = @guest_lists.where(:status => 'Might Come to Ceremony and Reception').count
+      @maybe_c = @guest_lists.where(:status => 'Might Come to Ceremony Only').count
+      @maybe_r = @guest_lists.where(:status => 'Might Come to Reception Only').count
+      @no = @guest_lists.where(:status => 'Not Coming').count
+    end
   end
 
   # GET /guest_lists/1
@@ -26,32 +27,47 @@ class GuestListsController < ApplicationController
 
   # GET /guest_lists/new
   def new
-    @user = User.find_by(id: cookies[:user_id])
-    @guest_list = @user.guest_lists.new
-    @message = 'New Guest'
-    @log = true
+    if(!cookies[:user_name].blank?)
+      @user = User.find_by(id: cookies[:user_id])
+      @guest_list = @user.guest_lists.new
+      @message = 'New Guest'
+      @log = true
+    end
   end
 
   # GET /guest_lists/1/edit
   def edit
-    @message = 'Edit Guest'
-    @log = true
+    if(!cookies[:user_name].blank?)
+      @message = 'Edit Guest'
+      @log = true
+    end
   end
 
   def make_invites
-    @message = 'Create Invitations'
-    @log = true
+    if(!cookies[:user_name].blank?)
+      @message = 'Create Invitations'
+      @log = true
+    end
   end
 
   def rsvp
-
+    @guest = GuestList.find(params[:guest_id])
+    @user = User.find(@guest.user_id)
+    @message = 'Hello ' + @guest.name
   end
 
   def send_mail
+    if(!cookies[:user_name].blank?)
+      @guest = GuestList.find(params[:guest_id])
+      @message = 'Invitation Sent'
+      @log = true
+      RsvpMailer.guest_invite(@guest).deliver
+    end
+  end
+
+  def update_guest_status
     @guest = GuestList.find(params[:guest_id])
-    @message = 'Invitation Sent'
-    @log = true
-    RsvpMailer.guest_invite(@guest).deliver
+    @guest.update_attribute(:status, params[:status])
   end
 
   # POST /guest_lists

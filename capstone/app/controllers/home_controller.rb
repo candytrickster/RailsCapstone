@@ -17,9 +17,10 @@ class HomeController < ApplicationController
   end
 
   def updateDate
-    @message = 'Edit Wedding Date'
-    @log = true
-    @user = User.find(cookies[:user_id])
+    if(!cookies[:user_name].blank?)
+      @message = 'Edit Wedding Date'
+      @log = true
+      @user = User.find(cookies[:user_id])
       @user.update_attribute(:wedDate, params[:date])
       if @user.save
         respond_to do |format|
@@ -29,12 +30,14 @@ class HomeController < ApplicationController
       else
         render 'edit'
       end
-
+    end
   end
 
   def guest_list
-    @message = 'Guest List'
-    @log = true
+    if(!cookies[:user_name].blank?)
+      @message = 'Guest List'
+      @log = true
+    end
   end
 
 end

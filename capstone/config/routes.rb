@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get '/createInvites' => 'guest_lists#make_invites'
 
   get '/invitation/:guest_id' => 'guest_lists#rsvp'
+  post '/invitation/:guest_id' => 'guest_lists#update_guest_status'
 
   get '/send_mail' => 'guest_lists#send_mail'
 
