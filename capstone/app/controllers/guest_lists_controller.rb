@@ -68,6 +68,7 @@ class GuestListsController < ApplicationController
   def update_guest_status
     @guest = GuestList.find(params[:guest_id])
     @guest.update_attribute(:status, params[:status])
+    #change button from send email invite to sent!
   end
 
   # POST /guest_lists
