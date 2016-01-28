@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125194159) do
+ActiveRecord::Schema.define(version: 20160128195454) do
 
   create_table "guest_lists", force: true do |t|
     t.integer  "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160125194159) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sent"
   end
 
   create_table "guests", force: true do |t|

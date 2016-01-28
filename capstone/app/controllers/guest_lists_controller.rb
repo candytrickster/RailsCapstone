@@ -59,9 +59,11 @@ class GuestListsController < ApplicationController
   def send_mail
     if(!cookies[:user_name].blank?)
       @guest = GuestList.find(params[:guest_id])
+      @guest.update_attribute(:sent, true)
       @message = 'Invitation Sent'
       @log = true
       RsvpMailer.guest_invite(@guest).deliver
+      redirect_to '/invite'
     end
   end
 
@@ -76,7 +78,7 @@ class GuestListsController < ApplicationController
   def create
     @user = User.find_by(id: cookies[:user_id])
     @guest_list = @user.guest_lists.new guest_list_params
-
+    @guest_list.sent = false
     respond_to do |format|
       if @guest_list.save
         format.html { redirect_to '/invite' }

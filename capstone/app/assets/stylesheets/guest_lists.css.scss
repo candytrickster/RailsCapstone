@@ -138,6 +138,7 @@ footer a:hover {
 
 #guest_list {
   width: 1200px;
+  min-height: 600px;
   text-align: center;
   padding-top: 40px;
   margin-left: auto;
@@ -210,7 +211,7 @@ input[type='submit']:hover {
 #add {
   width: 150px;
   padding: 10px;
-  margin: 20px 15px 50px auto;
+  margin: 20px 15px 20px auto;
   background-color: #7587a1;
   border-radius: 20px;
 }
@@ -236,6 +237,29 @@ input[type='submit']:hover {
 
 #send {
   width: 168px;
+}
+
+#sent {
+  position: relative;
+  visibility: visible;
+}
+
+#sent p {
+  position:absolute;
+  display:none;
+  padding:5px 5px;
+  text-align: center;
+  color: #fff;
+  margin-top: -31px;
+  margin-left: 85px;
+  width: 170px;
+}
+
+#sent:hover p {
+  display:block;
+  left:0;
+  background-color: #9871a8;
+  border-radius: 14px;
 }
 
 select {
@@ -368,7 +392,6 @@ select {
   font-size: 30px;
   color: #ab1e3e;
   font-family: Didact;
-
 }
 
 

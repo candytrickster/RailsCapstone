@@ -90,7 +90,11 @@
               <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>
               <td><%= link_to 'Delete', guest_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% if !guest_list.email.blank? %>
-                  <td id="send"><%= link_to 'Send Email Invite', {:controller => 'guest_lists', :action => 'send_mail', :guest_id => guest_list.id }%> </td>
+                  <% if !guest_list.sent %>
+                      <td id="send"><%= link_to 'Send Email Invite', {:controller => 'guest_lists', :action => 'send_mail', :guest_id => guest_list.id }%> </td>
+                  <% else %>
+                      <td id="sent"><%= link_to 'Sent!', {:controller => 'guest_lists', :action => 'send_mail', :guest_id => guest_list.id }%> <p class="message">Click to send again</p></td>
+                  <% end %>
               <% else %>
                   <td> No Email To Send </td>
               <% end %>
@@ -103,7 +107,7 @@
       <!--<%= link_to 'Send Email Invite To All', '/home' %>-->
     <!--</section>-->
     <section id="add">
-      <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add' %>
+      <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add_guest' %>
     </section>
   </section>
 </section>
