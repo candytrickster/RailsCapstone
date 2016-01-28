@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your Day Your Way</title>
+  <title>RSVP</title>
   <%= stylesheet_link_tag "home.css.scss" %>
 </head>
-<header>
-  <img id="guest_logo" src="../../assets/logo2.png">
-  <h1 id="message"><%= @message %></h1>
-</header>
-<body>
+<body id="rsvp">
 <section id="change_status">
-  <p>You have been invited to the wedding of <%= @user.name %> and <%= @user.fianceeName %>. Please select an R.S.V.P. from the dropdown</p>
+  <img id="guest_logo" src="../../assets/logo2.png">
+  <h1 id="guest_message"><%= @message %></h1>
+  <p>You have been invited to the wedding of <span><%= @user.name %></span> and <span><%= @user.fianceeName %></span>. Please select an R.S.V.P. from the dropdown</p>
   <form accept-charset="UTF-8" method="post">
     <input name="utf8" type="hidden" value="&#x2713;">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <select name="status">
+    <select name="status" id="status">
       <option value="Coming to Ceremony and Reception">Coming to Ceremony and Reception</option>
       <option value="Coming to Ceremony Only">Coming to Ceremony Only</option>
       <option value="Coming to Reception Only">Coming to Reception Only</option>
@@ -24,13 +22,9 @@
       <option value="Not Coming">Not Coming</option>
     </select>
     <br>
-    <input class="go" name="submit" type="submit"
+    <input id="change" name="submit" type="submit"
            value="R.S.V.P." />
   </form>
 </section>
 </body>
-<footer>
-  <p id="congrats">Congratulations!</p>
-  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a href="https://30865de19d880682c894f6235a5a1ba7199f7435-www.googledrive.com/host/0B85v5S0Z9FqXcEE0TVhyN0Q5dnM/">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
-</footer>
 </html>

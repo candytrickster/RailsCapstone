@@ -300,15 +300,76 @@ select {
   color: #9871a8;
 }
 
+#rsvp {
+  background-image: url("rsvp_back.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: -10px -8px 0px -8px;
+  overflow: hidden;
+  min-height: 1080px;
+  min-width: 1100px;
+}
 
+#change_status{
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255,255,255,.7);
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 100px;
+}
 
+#guest_logo {
+  padding-top: 40px;
+}
 
+#guest_message {
+  font-family: AlexBrush;
+  color: #ab1e3e;
+  font-size: 50px;
+  margin-top: -10px;
+  letter-spacing: 2px;
+}
 
+#change_status p {
+  font-family: Didact;
+  font-size: 25px;
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -30px;
+  color: #9871a8;
+  padding-bottom: 10px;
+}
 
+#change_status span {
+  color: #ab1e3e;
+  font-weight: bold;
+}
 
+#status {
+  color: #ab1e3e;
+}
 
+#change {
+  font-size: 20px;
+  background-color: #ce4267;
+  margin-bottom: 50px;
+  margin-top: -40px;
+}
 
+#change:hover {
+  background-color: #ab1e3e;
+}
 
+#change_status h2 {
+  padding-bottom: 70px;
+  font-size: 30px;
+  color: #ab1e3e;
+  font-family: Didact;
+
+}
 
 
 

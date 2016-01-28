@@ -150,9 +150,6 @@
           name: 'Guests',
           colorByPoint: true,
           data: [{
-            name: "Haven't Asked Yet",
-            y: <%= @unsure %>
-          }, {
             name: 'Coming to Both',
             y: <%= @yes_both %>,
             sliced: true,
@@ -175,7 +172,10 @@
           }, {
             name: 'Not Coming',
             y: <%= @no %>
-          }]
+          }, {
+              name: "Haven't Asked Yet",
+              y: <%= @unsure %>
+            }]
         }]
       });
     });
