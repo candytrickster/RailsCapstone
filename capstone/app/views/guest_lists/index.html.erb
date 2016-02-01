@@ -74,7 +74,6 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Relationship</th>
         <th>Email</th>
         <th>Status</th>
         <th colspan="3"></th>
@@ -84,7 +83,6 @@
         <% @guest_lists.each do |guest_list| %>
             <tr>
               <td><%= guest_list.name %></td>
-              <td>yo <%= guest_list.group_id %></td>
               <td><%= guest_list.email %></td>
               <td><%= guest_list.status %></td>
               <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>

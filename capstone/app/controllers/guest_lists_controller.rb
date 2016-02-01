@@ -82,13 +82,14 @@ class GuestListsController < ApplicationController
     respond_to do |format|
       if @guest_list.save
         @guest_list.update_attribute(:group_id, @guest_list.id)
+        @guest_list.update_attribute(:group_leader, true);
 
         params[:mem].each do |value|
-
-          puts 'heelo'
-          puts value[1]
-
-          @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status)
+          if(value[1].blank?)
+            @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => @guest_list.name + "'s additional member", :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+          else
+            @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+          end
           @new_guest.save
         end
 
