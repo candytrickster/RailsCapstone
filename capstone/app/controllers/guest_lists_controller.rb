@@ -81,6 +81,18 @@ class GuestListsController < ApplicationController
     @guest_list.sent = false
     respond_to do |format|
       if @guest_list.save
+        @guest_list.update_attribute(:group_id, @guest_list.id)
+
+        params[:mem].each do |value|
+
+          puts 'heelo'
+          puts value[1]
+
+          @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status)
+          @new_guest.save
+        end
+
+
         format.html { redirect_to '/invite' }
         format.json { render :show, status: :created, location: @guest_list }
       else

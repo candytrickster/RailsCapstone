@@ -184,6 +184,16 @@ input[type='text'] {
   font-size: 24px;
 }
 
+input[type='number'] {
+  color: #9871a8;
+  width:50px;
+  margin-bottom: 60px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+  text-align: center;
+}
+
 input[type='submit'] {
   font-size: 25px;
   background-color: #7587a1;
@@ -195,6 +205,29 @@ input[type='submit'] {
 
 input[type='submit']:hover {
   background-color: #496787;
+}
+
+.name-number-field{
+  color: #9871a8;
+  width:400px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+  margin: 0px 10px 40px 10px;
+}
+
+#plus {
+  color: #9871a8;
+  margin-bottom: 60px;
+  margin-top: -25px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+  text-align: center;
+}
+
+#plus_sign {
+  font-weight: bolder;
 }
 
 #guest_list a {

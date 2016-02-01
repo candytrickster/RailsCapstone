@@ -2,7 +2,6 @@
   <% if @guest_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@guest_list.errors.count, "error") %> prohibited this guest_list from being saved:</h2>
-
       <ul>
       <% @guest_list.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,9 +12,11 @@
   <div class="field">
     <%= f.text_field :name, :placeholder=> 'Guest Name' %>
   </div>
-  <div class="field">
-    <%= f.text_field :relationship, :placeholder=> 'Relation To Guest' %>
-  </div>
+    <div class="field-input">
+      <p id="plus"><span id="plus_sign">+</span> <input class="product-quantity" type="number" value="0" min="0"> Additional members (e.x. family members and or friends of this guest) </p>
+    </div>
+    <div class="name-number-field-container" data-size="Small">
+    </div>
   <div class="field">
     <%= f.text_field :email, :placeholder => 'Email (optional but needed for electronic invitations)' %>
   </div>
@@ -27,3 +28,25 @@
     <%= f.submit 'Create Guest' %>
   </div>
 <% end %>
+
+<script>
+
+  $('.product-quantity').on('change',function(){
+    $('.name-number-field').remove();
+    var val = $(this).val();
+    for (var i = 0; i < parseInt(val); i++){
+      $('<input/>',{'class':'name-number-field','placeholder':'Name of Member (optional)','name':'mem['+i+']'}).insertAfter($("[data-size]"));
+
+    }
+  });
+
+    function test()
+    {
+      var inputs = document.getElementsByClassName( 'name-number-field' ),
+          names  = [].map.call(inputs, function( input ) {
+            return input.value;
+          }).join( '|' );
+
+      alert(names);
+    }
+</script>

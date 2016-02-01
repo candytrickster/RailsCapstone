@@ -84,7 +84,7 @@
         <% @guest_lists.each do |guest_list| %>
             <tr>
               <td><%= guest_list.name %></td>
-              <td><%= guest_list.relationship %></td>
+              <td>yo <%= guest_list.group_id %></td>
               <td><%= guest_list.email %></td>
               <td><%= guest_list.status %></td>
               <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>
@@ -102,15 +102,10 @@
         <% end %>
       </tbody>
     </table>
-
-    <!--<section id="email_all">-->
-      <!--<%= link_to 'Send Email Invite To All', '/home' %>-->
-    <!--</section>-->
     <section id="add">
       <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add_guest' %>
     </section>
     <section id="loop_hole">
-
     </section>
   </section>
 </section>
