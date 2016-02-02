@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Day Your Way</title>
+  <%= stylesheet_link_tag "seating.css.scss" %>
+</head>
+<header>
+  <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
+  <% if @log == true %>
+      <div id="logout">
+        <a href="/">Log out</a>
+      </div>
+  <% end %>
+  <h1 id="message"><%= @message %></h1>
+  <nav>
+    <% if @log == true %>
+        <ul id="menu">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/vendors">Vendors</a>
+            <ul class="submenu">
+              <li><a href="">DJ</a></li>
+              <li><a href="">Officiants</a></li>
+              <li><a href="">Transportation</a></li>
+              <li><a href="">Catering</a></li>
+              <li><a href="">Decorations</a></li>
+              <li><a href="">Flowers</a></li>
+              <li><a href="">Photography/Videography</a></li>
+              <li><a href="">Venue</a></li>
+            </ul>
+          </li>
+          <li><a href="/budget">Budget</a></li>
+          <li><a href="/checklist">Checklist</a></li>
+          <li><a href="/invite">Invitation Tracker</a>
+            <ul class="submenu">
+              <li><a href="/invite">Guest List</a></li>
+              <li><a href="/createInvites">Create Invites</a></li>
+            </ul>
+          </li>
+          <li><a href="/ideaFolder">Idea Folder</a></li>
+          <li><a href="/registry">Registry</a></li>
+          <li><a href="/color">Important Dates</a>
+          <li><a href="/examples">Examples</a>
+            <ul class="submenu">
+              <li><a href="">Ceremony</a></li>
+              <li><a href="">Reception</a></li>
+              <li><a href="">Color&nbsp;&nbsp;Schemes</a></li>
+              <li><a href="">Themes</a></li>
+            </ul>
+          </li>
+          <li id="active"><a href="/seating">Seating</a></li>
+          <li><a href="/attire">Attire</a>
+            <ul class="submenu">
+              <li><a href="">Bride</a></li>
+              <li><a href="">Bridesmaids</a></li>
+              <li><a href="">Groom</a></li>
+              <li><a href="">Groomsmen</a></li>
+              <li><a href="">Accessories</a></li>
+            </ul>
+          </li>
+          <li><a href="/themes">Locations</a></li>
+          <li><a href="/songs">Songs</a></li>
+          <li><a href="/editCountdown">Edit Countdown</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+    <% end %>
+  </nav>
+</header>
+<body>
+  <section id="sizer">
+    <p>Enter room width: <input value="0" type="number" name="width" id="width">ft and length: <input value="0" type="number" name="length" id="length">ft (each square will be a square foot) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
+  </section>
+  <aside id="guest_list">
+    <h1>Guest List</h1>
+    <section id="guest">
+
+    </section>
+  </aside>
+  <!--<script src="../../assets/javascripts/seating.js.coffee"></script>-->
+  <section id="scrollable">
+    <canvas id="grid" width="1200" height="1000"></canvas>
+  </section>
+
+  <script>
+    function drawBoard(){
+//      var s =document.getElementById("scrollable");
+//
+//      s.onscroll = function(){
+//        c.style.top = s.scrollTop + "px";
+//        c.style.left = s.scrollLeft + "px";
+//      }
+      var bw = Number(document.getElementById("width").value);
+      var bh = Number(document.getElementById("length").value);
+      console.log(bw + ' ' + bh);
+      var p = 10;
+      var canvas = document.getElementById("grid");
+      var context = canvas.getContext("2d");
+      canvas.width = canvas.width;
+      canvas.height = canvas.height;
+
+      context.clearRect(0,0,canvas.width, canvas.height);
+
+      for (var x = 0; x <= bw*2; x += 20) {
+        context.moveTo(0 + x + p, p);
+        context.lineTo(0 + x + p, bh*2 + p);
+      }
+
+      for (var x = 0; x <= bh*2; x += 20) {
+        context.moveTo(p, 0.5 + x + p);
+        context.lineTo(bw*2 + p, 0.5 + x + p);
+      }
+
+      context.strokeStyle = "black";
+      context.stroke();
+    }
+
+  </script>
+
+  <aside id="tools">
+
+  </aside>
+</body>
+<footer>
+  <p id="congrats">Congratulations!</p>
+  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a href="https://30865de19d880682c894f6235a5a1ba7199f7435-www.googledrive.com/host/0B85v5S0Z9FqXcEE0TVhyN0Q5dnM/">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
+</footer>
+</html>

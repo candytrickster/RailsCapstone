@@ -92,8 +92,6 @@ class GuestListsController < ApplicationController
           end
           @new_guest.save
         end
-
-
         format.html { redirect_to '/invite' }
         format.json { render :show, status: :created, location: @guest_list }
       else

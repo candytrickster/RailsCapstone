@@ -1,0 +1,202 @@
+@font-face {
+  font-family: AlexBrush;
+  src: url(AlexBrush-Regular.ttf);
+}
+
+@font-face {
+  font-family: Didact;
+  src: url(DidactGothic.ttf);
+}
+
+#logout {
+  width: 150px;
+  text-align: center;
+  margin-left: auto;
+  margin-top: -80px;
+  margin-right: 15px;
+}
+
+#logout a {
+  font-family: AlexBrush;
+  font-size: 40px;
+  text-decoration: none;
+  color: #B687C9;
+}
+
+#logout a:hover {
+  color: #D49EEB;
+}
+
+#logo {
+  height: 100px;
+}
+
+#message {
+  margin-top: -40px;
+  text-align: center;
+  font-family: AlexBrush;
+  color: #f283a5;
+  font-size: 50px;
+  letter-spacing: 2px;
+}
+
+#active a {
+  color: #fbbcca;
+}
+
+nav {
+  height: 50px;
+  margin-top: -10px;
+  background-color: #75879f;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+nav ul {
+  font-family: Didact;
+  padding-top: 10px;
+}
+
+nav ul li {
+  display: inline;
+  padding-left: 20px;
+  padding-right: 20px;
+  position:relative;
+}
+
+nav a {
+  font-family: Didact;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #fbbcca;
+}
+
+ul#menu ul{
+  position:absolute;
+  display:none;
+  padding:10px 0;
+}
+
+ul#menu li:hover ul{
+  display:block;
+  left:0;
+  background-color: #fbbcca;
+  border-radius: 14px;
+}
+
+ul#menu li:hover ul li{
+  display:block;
+  left:0;
+}
+
+ul#menu ul li a{
+  color: #fff;
+}
+
+ul#menu ul li a:hover{
+  color: #9871a8;
+}
+
+footer {
+  background-color: #7587a1;
+  margin: 0px -8px 0px -8px;
+  overflow: hidden;
+  height: 150px;
+  text-align: right;
+}
+
+footer p {
+  padding-right: 20px;
+  margin-top: -230px;
+  font-family: Didact;
+  color: #fbbcca;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fbbcca;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+#congrats {
+  text-align: left;
+  margin-left: 135px;
+  font-family: AlexBrush;
+  font-size: 100px;
+  margin-top: 20px;
+  color: #fbbcca;
+  letter-spacing: 5px;
+}
+
+//seating css
+
+#scrollable {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fce8ee;
+}
+
+#guest_list {
+  float: left;
+}
+
+#sizer {
+  height: 50px;
+  margin-top: -20px;
+  background-color: #9871a8;
+  margin-left: -8px;
+  margin-right: -8px;
+  text-align: center;
+}
+
+#sizer p {
+  padding: 10px;
+  font-family: Didact;
+  color: #fff;
+  font-size: 20px;
+}
+
+input[type='number'] {
+  color: #9871a8;
+  width:100px;
+  margin-bottom: 60px;
+  font-size: 18px;
+  font-family: Didact;
+  text-align: center;
+}
+
+//canvas {
+//  margin-left: auto;
+//  margin-right: auto;
+//}
+
+#tools {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

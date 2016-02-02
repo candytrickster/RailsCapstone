@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'seating/index'
+
   resources :guest_lists
 
   resources :users
@@ -32,6 +34,8 @@ Rails.application.routes.draw do
   post '/invitation/:guest_id' => 'guest_lists#update_guest_status'
 
   get '/send_mail' => 'guest_lists#send_mail'
+
+  get '/seating' => 'seating#index'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
