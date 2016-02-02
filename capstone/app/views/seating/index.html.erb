@@ -65,14 +65,29 @@
     <% end %>
   </nav>
 </header>
-<body>
+<body onload="drawBoard()">
   <section id="sizer">
-    <p>Enter room width: <input value="0" type="number" name="width" id="width">ft and length: <input value="0" type="number" name="length" id="length">ft (each square will be a square foot) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
+    <p>Enter room width: <input value="590" min="0" type="number" name="width" id="width">ft and length: <input value="490" min="0" type="number" name="length" id="length">ft (each square will be a square foot) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
   </section>
   <aside id="guest_list">
     <h1>Guest List</h1>
     <section id="guest">
-
+      <% @guest_lists.each do |guest_list| %>
+          <ul>
+            <% @all.each do |guest| %>
+              <% if guest.group_id == guest_list.group_id %>
+                <% @numInGroup += 1 %>
+              <% end %>
+            <% end %>
+            <% puts @numInGroup %>
+            <% if @numInGroup == 1 %>
+               <li><%= guest_list.name %></li>
+            <% else %>
+               <li><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+            <% end %>
+            <% @numInGroup = 0 %>
+          </ul>
+      <% end %>
     </section>
   </aside>
   <!--<script src="../../assets/javascripts/seating.js.coffee"></script>-->
@@ -90,7 +105,6 @@
 //      }
       var bw = Number(document.getElementById("width").value);
       var bh = Number(document.getElementById("length").value);
-      console.log(bw + ' ' + bh);
       var p = 10;
       var canvas = document.getElementById("grid");
       var context = canvas.getContext("2d");

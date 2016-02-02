@@ -3,6 +3,14 @@ class SeatingController < ApplicationController
     if(!cookies[:user_name].blank?)
       @message = 'Seating Chart'
       @log = true
+
+      @all = GuestList.where('user_id' => cookies[:user_id])
+      @guest_lists = GuestList.where('user_id = ? AND group_leader = ?', cookies[:user_id], true)
+      @numInGroup = 0
+
+
+
+
     end
   end
 end

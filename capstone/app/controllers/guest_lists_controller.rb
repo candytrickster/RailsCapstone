@@ -84,13 +84,15 @@ class GuestListsController < ApplicationController
         @guest_list.update_attribute(:group_id, @guest_list.id)
         @guest_list.update_attribute(:group_leader, true);
 
-        params[:mem].each do |value|
-          if(value[1].blank?)
-            @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => @guest_list.name + "'s additional member", :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
-          else
-            @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+        if(!params[:mem].blank?)
+          params[:mem].each do |value|
+            if(value[1].blank?)
+              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => @guest_list.name + "'s additional member", :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+            else
+              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+            end
+            @new_guest.save
           end
-          @new_guest.save
         end
         format.html { redirect_to '/invite' }
         format.json { render :show, status: :created, location: @guest_list }
