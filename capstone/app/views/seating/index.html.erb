@@ -67,7 +67,7 @@
 </header>
 <body onload="drawBoard()">
   <section id="sizer">
-    <p>Enter room width: <input value="590" min="0" type="number" name="width" id="width">ft and length: <input value="490" min="0" type="number" name="length" id="length">ft (each square will be 10 square feet) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
+    <p>Enter room width: <input value="600" min="0" type="number" name="width" id="width">ft and length: <input value="500" min="0" type="number" name="length" id="length">ft (each square will be 10 square feet) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
   </section>
   <section id="seating">
     <aside id="guest_list">
@@ -92,18 +92,17 @@
       </section>
     </aside>
     <section id="scrollable">
-      <canvas id="grid" width="1200" height="1000">
+      <canvas id="grid" width="1208" height="1008">
       </canvas>
-      <canvas id="tables" width="1200" height="1000">
+      <canvas id="tables" width="1208" height="1008">
       </canvas>
-      <p id="info">yo</p>
     </section>
 
     <script>
       function drawBoard(){
         var bw = Number(document.getElementById("width").value);
         var bh = Number(document.getElementById("length").value);
-        var p = 10;
+        var p = 3;
         var canvas = document.getElementById("grid");
         var context = canvas.getContext("2d");
         canvas.width = canvas.width;
@@ -139,12 +138,9 @@
         c.add(img).setActiveObject(img);
       });
 
-      var info = document.getElementById('info');
-
       c.on({
         'object:moving': function(e) {
           e.target.opacity = 0.5;
-          info.innerHTML = 'moving';
         },
         'object:modified': function(e) {
           e.target.opacity = 1;
@@ -180,7 +176,6 @@
             e.target.setCoords();
             c.renderAll();
           }
-          info.innerHTML = ''+ e.target.width + ':' + c.width + ':' + (c.height - e.target.height);
         }
       });
 
