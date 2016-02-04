@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tables
+
   get 'seating/index'
 
   resources :guest_lists

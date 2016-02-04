@@ -108,6 +108,7 @@ footer {
   overflow: hidden;
   height: 150px;
   text-align: right;
+  clear: left;
 }
 
 footer p {
@@ -138,15 +139,64 @@ footer a:hover {
 
 //seating css
 
+#seating {
+  width: 1800px;
+  margin-left: auto;
+}
+
 #scrollable {
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
   background-color: #fce8ee;
+  float: left;
 }
 
 #guest_list {
+  min-width: 250px;
+  background-color: #7587a1;
   float: left;
+  text-align: center;
+}
+
+#guest_list p {
+  margin-top: 10px;
+  font-family: AlexBrush;
+  font-size: 45px;
+  color: #fff;
+  letter-spacing: 3px;
+}
+
+#guest {
+  margin-top: -30px;
+  padding-bottom: 20px;
+}
+
+#guest ul {
+  list-style-type: none;
+}
+
+#guest li {
+  font-family: Didact;
+  font-size: 18px;
+  color: #fff;
+  background-color: #B687C9;
+  width: 150px;
+  border-radius: 14px;
+  padding: 5px;
+}
+
+#guest li:hover {
+  background-color: #9871a8;
+  cursor: pointer;
+}
+
+#hint {
+  margin-top: -55px;
+  font-family: Didact;
+  font-size: 15px;
+  padding-bottom: 30px;
+  color: #fff;
 }
 
 #sizer {
@@ -163,6 +213,9 @@ footer a:hover {
   font-family: Didact;
   color: #fff;
   font-size: 20px;
+  width: 850px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 input[type='number'] {
@@ -180,14 +233,43 @@ input[type='number'] {
 //}
 
 #tools {
-
+  min-width: 250px;
+  max-width: 250px;
+  background-color: #7587a1;
+  text-align: center;
+  float: left;
 }
 
+#tools p {
+  margin-top: 10px;
+  font-family: AlexBrush;
+  font-size: 45px;
+  color: #fff;
+  letter-spacing: 3px;
+}
 
+#create_table {
+  margin-top: -30px;
+  padding-bottom: 20px;
+}
 
+button[type='submit'] {
+  font-size: 25px;
+  background-color: #B687C9;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 15px 8px 15px;
+  margin-bottom: 30px;
+}
 
+button[type='submit']:hover {
+  background-color: #9871a8;
+  cursor: pointer;
+}
 
-
+#tables{
+  //margin-top: -500px;
+}
 
 
 

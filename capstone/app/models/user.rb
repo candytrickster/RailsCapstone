@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :guest_lists, dependent: :destroy
+  has_many :tables, dependent: :destroy
 
   validates :name, presence: true
   validates :fianceeName, presence: true

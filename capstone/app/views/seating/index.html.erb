@@ -67,71 +67,108 @@
 </header>
 <body onload="drawBoard()">
   <section id="sizer">
-    <p>Enter room width: <input value="590" min="0" type="number" name="width" id="width">ft and length: <input value="490" min="0" type="number" name="length" id="length">ft (each square will be a square foot) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
+    <p>Enter room width: <input value="590" min="0" type="number" name="width" id="width">ft and length: <input value="490" min="0" type="number" name="length" id="length">ft (each square will be 10 square feet) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
   </section>
-  <aside id="guest_list">
-    <h1>Guest List</h1>
-    <section id="guest">
-      <% @guest_lists.each do |guest_list| %>
-          <ul>
-            <% @all.each do |guest| %>
-              <% if guest.group_id == guest_list.group_id %>
-                <% @numInGroup += 1 %>
+  <section id="seating">
+    <aside id="guest_list">
+      <p>Guest List</p>
+      <h3 id="hint">(Click and Drag to Tables)</h3>
+      <section id="guest">
+        <% @guest_lists.each do |guest_list| %>
+            <ul>
+              <% @all.each do |guest| %>
+                <% if guest.group_id == guest_list.group_id %>
+                  <% @numInGroup += 1 %>
+                <% end %>
               <% end %>
-            <% end %>
-            <% puts @numInGroup %>
-            <% if @numInGroup == 1 %>
-               <li><%= guest_list.name %></li>
-            <% else %>
-               <li><%= guest_list.name %> + <%= @numInGroup-1 %></li>
-            <% end %>
-            <% @numInGroup = 0 %>
-          </ul>
-      <% end %>
+              <% if @numInGroup == 1 %>
+                 <li><%= guest_list.name %></li>
+              <% else %>
+                 <li><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+              <% end %>
+              <% @numInGroup = 0 %>
+            </ul>
+        <% end %>
+      </section>
+    </aside>
+    <section id="scrollable">
+      <canvas id="grid" width="1200" height="1000">
+      </canvas>
+      <canvas id="tables" width="1200" height="1000">
+      </canvas>
+      <p id="info">yo</p>
     </section>
-  </aside>
-  <!--<script src="../../assets/javascripts/seating.js.coffee"></script>-->
-  <section id="scrollable">
-    <canvas id="grid" width="1200" height="1000"></canvas>
+
+    <script>
+      function drawBoard(){
+        var bw = Number(document.getElementById("width").value);
+        var bh = Number(document.getElementById("length").value);
+        var p = 10;
+        var canvas = document.getElementById("grid");
+        var context = canvas.getContext("2d");
+        canvas.width = canvas.width;
+        canvas.height = canvas.height;
+
+        context.clearRect(0,0,canvas.width, canvas.height);
+
+        for (var x = 0; x <= bw*2; x += 20) {
+          context.moveTo(0 + x + p, p);
+          context.lineTo(0 + x + p, bh*2 + p);
+        }
+
+        for (var x = 0; x <= bh*2; x += 20) {
+          context.moveTo(p, 0.5 + x + p);
+          context.lineTo(bw*2 + p, 0.5 + x + p);
+        }
+
+        context.strokeStyle = 'rgba(0,0,0,0.3)';
+        context.stroke();
+      }
+
+      function createTable() {
+          window.open("", "popupWindow", "width=600,height=600");
+        }
+
+      var c = new fabric.Canvas('tables');
+      fabric.Image.fromURL('../assets/logo.png', function(img) {
+        img.scale(0.5).set({
+          left: 150,
+          top: 150,
+          angle: 0
+        });
+        c.add(img).setActiveObject(img);
+      });
+
+      var info = document.getElementById('info');
+
+      c.on({
+        'object:moving': function(e) {
+          e.target.opacity = 0.5;
+          info.innerHTML = 'moving';
+        },
+        'object:modified': function(e) {
+          e.target.opacity = 1;
+          info.innerHTML = ''+ e.target.getLeft() + ':' + e.target.getTop() + ':' + e.target.getAngle();
+          fabric.Image.fromURL('../assets/logo.png', function(img) {
+            img.scale(0.5).set({
+              left: e.target.getLeft(),
+              top: e.target.getTop(),
+              angle: e.target.getAngle()
+            });
+            c.add(img).setActiveObject(img);
+          });
+        }
+      });
+
+    </script>
+
+    <aside id="tools">
+      <p>Tools</p>
+      <section id="create_table">
+        <button type="submit" id="new_table" onclick="createTable()">+ New Table</button>
+      </section>
+    </aside>
   </section>
-
-  <script>
-    function drawBoard(){
-//      var s =document.getElementById("scrollable");
-//
-//      s.onscroll = function(){
-//        c.style.top = s.scrollTop + "px";
-//        c.style.left = s.scrollLeft + "px";
-//      }
-      var bw = Number(document.getElementById("width").value);
-      var bh = Number(document.getElementById("length").value);
-      var p = 10;
-      var canvas = document.getElementById("grid");
-      var context = canvas.getContext("2d");
-      canvas.width = canvas.width;
-      canvas.height = canvas.height;
-
-      context.clearRect(0,0,canvas.width, canvas.height);
-
-      for (var x = 0; x <= bw*2; x += 20) {
-        context.moveTo(0 + x + p, p);
-        context.lineTo(0 + x + p, bh*2 + p);
-      }
-
-      for (var x = 0; x <= bh*2; x += 20) {
-        context.moveTo(p, 0.5 + x + p);
-        context.lineTo(bw*2 + p, 0.5 + x + p);
-      }
-
-      context.strokeStyle = "black";
-      context.stroke();
-    }
-
-  </script>
-
-  <aside id="tools">
-
-  </aside>
 </body>
 <footer>
   <p id="congrats">Congratulations!</p>

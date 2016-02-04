@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  type: 
+  size: MyString
+  position: MyString
+  num_of_seats: 1
+
+two:
+  user_id: 1
+  name: MyString
+  type: 
+  size: MyString
+  position: MyString
+  num_of_seats: 1
