@@ -128,15 +128,53 @@
           window.open("", "popupWindow", "width=600,height=600");
         }
 
-      var c = new fabric.Canvas('tables');
-      fabric.Image.fromURL('../assets/logo.png', function(img) {
-        img.scale(0.5).set({
-          left: 150,
-          top: 150,
-          angle: 0
+      function create(type, name)
+      {
+        var table;
+        var text = new fabric.Text(name, {
+          fontSize: 40,
+          originX: 'center',
+          originY: 'center',
+          fill: '#fff',
+          fontFamily: 'Didact'
         });
-        c.add(img).setActiveObject(img);
-      });
+        switch(type)
+        {
+          case "circle":
+            table = new fabric.Circle({
+              radius: 80, fill: '#AB1E3E', originX: 'center', originY: 'center'
+            });
+                break;
+          case "rec":
+            table = new fabric.Rect({
+              width: 300, height:150, fill: '#AB1E3E', originX: 'center', originY: 'center'
+            });
+                break;
+          case "head":
+            table = new fabric.Rect({
+              width: 300, height:150, fill: '#AB1E3E', originX: 'center', originY: 'center'
+            });
+                break;
+          default:
+                break;
+        }
+        var group = new fabric.Group([ table, text ], {
+          left: 150,
+          top: 100
+        });
+        c.add(group);
+      }
+
+      var c = new fabric.Canvas('tables');
+//      fabric.Image.fromURL('../assets/logo.png', function(img) {
+//        img.scale(0.5).set({
+//          left: 150,
+//          top: 150,
+//          angle: 0
+//        });
+//        c.add(img).setActiveObject(img);
+//
+//      });
 
       c.on({
         'object:moving': function(e) {
@@ -178,117 +216,18 @@
           }
         }
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      var canvas = new fabric.Canvas('canvas');
-
-      /*
-       NOTE: the start and end handlers are events for the <img> elements; the rest are bound to
-       the canvas container.
-       */
-
-      function handleDragStart(e) {
-        [].forEach.call(images, function (img) {
-          img.classList.remove('img_dragging');
-        });
-        this.classList.add('img_dragging');
-      }
-
-      function handleDragOver(e) {
-        if (e.preventDefault) {
-          e.preventDefault(); // Necessary. Allows us to drop.
-        }
-
-        e.dataTransfer.dropEffect = 'copy'; // See the section on the DataTransfer object.
-        // NOTE: comment above refers to the article (see top) -natchiketa
-
-        return false;
-      }
-
-      function handleDragEnter(e) {
-        // this / e.target is the current hover target.
-        this.classList.add('over');
-      }
-
-      function handleDragLeave(e) {
-        this.classList.remove('over'); // this / e.target is previous target element.
-      }
-
-      function handleDrop(e) {
-        // this / e.target is current target element.
-
-        if (e.stopPropagation) {
-          e.stopPropagation(); // stops the browser from redirecting.
-        }
-
-        var img = document.querySelector('#images img.img_dragging');
-
-        console.log('event: ', e);
-
-        var newImage = new fabric.Image(img, {
-          width: img.width,
-          height: img.height,
-          // Set the center of the new object based on the event coordinates relative
-          // to the canvas container.
-          left: e.layerX,
-          top: e.layerY
-        });
-        canvas.add(newImage);
-
-        return false;
-      }
-
-      function handleDragEnd(e) {
-        // this/e.target is the source node.
-        [].forEach.call(images, function (img) {
-          img.classList.remove('img_dragging');
-        });
-      }
-
-      if (Modernizr.draganddrop) {
-        // Browser supports HTML5 DnD.
-
-        // Bind the event listeners for the image elements
-        var images = document.querySelectorAll('#images img');
-        [].forEach.call(images, function (img) {
-          img.addEventListener('dragstart', handleDragStart, false);
-          img.addEventListener('dragend', handleDragEnd, false);
-        });
-        // Bind the event listeners for the canvas
-        var canvasContainer = document.getElementById('canvas-container');
-        canvasContainer.addEventListener('dragenter', handleDragEnter, false);
-        canvasContainer.addEventListener('dragover', handleDragOver, false);
-        canvasContainer.addEventListener('dragleave', handleDragLeave, false);
-        canvasContainer.addEventListener('drop', handleDrop, false);
-      } else {
-        // Replace with a fallback to a library solution.
-        alert("This browser doesn't support the HTML5 Drag and Drop API.");
-      }
     </script>
 
     <aside id="tools">
       <p>Tools</p>
       <section id="create_table">
-        <button type="submit" id="new_table" onclick="createTable()">+ New Table</button>
+        <button type="submit" id="new_table" onclick="create('rec', 'Rectangle')">+ New Table</button>
       </section>
     </aside>
   </section>
 </body>
 <footer>
   <p id="congrats">Congratulations!</p>
-  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a href="https://30865de19d880682c894f6235a5a1ba7199f7435-www.googledrive.com/host/0B85v5S0Z9FqXcEE0TVhyN0Q5dnM/">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
+  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a target="_blank" href="https://www.linkedin.com/in/tracie-wamsley-a0435b107">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
 </footer>
 </html>
