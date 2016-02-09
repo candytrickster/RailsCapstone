@@ -131,7 +131,7 @@
           window.open("", "popupWindow", "width=600,height=600");
         }
 
-      function create(type, name, pos, size)
+      function create(type, name, pos, size, id)
       {
         var sizes = size.split(":");
         var positions = pos.split(":");
@@ -147,7 +147,12 @@
         {
           case "circle":
             table = new fabric.Circle({
-              radius: Number(sizes[0]), fill: '#AB1E3E', originX: 'center', originY: 'center', stroke: "black", strokeWidth: 2
+              radius: Number(sizes[0]),
+              fill: '#AB1E3E',
+              originX: 'center',
+              originY: 'center',
+              stroke: "black",
+              strokeWidth: 2
             });
                 break;
           case "rec":
@@ -168,6 +173,20 @@
           top: Number(positions[1]),
           angle: Number(positions[2])
         });
+
+        group.toObject = (function(toObject) {
+          return function() {
+            return fabric.util.object.extend(toObject.call(this), {
+              name: this.name,
+              kind: this.kind,
+              id: this.id
+            });
+          };
+        })(group.toObject);
+
+        group.name = name;
+        group.kind = type;
+        group.id = id;
         c.add(group);
       }
 
@@ -176,7 +195,6 @@
           e.target.set({
             opacity: 0.5
           });
-//          console.log(e.target.getOpacity());
         },
         'object:modified': function(e) {
           e.target.set({
@@ -214,12 +232,34 @@
             e.target.setCoords();
             c.renderAll();
           }
+          var size;
+          if(e.target.kind == 'circle')
+          {
+            size = (e.target.getWidth()/2)-1;
+          }
+          else
+          {
+            size = e.target.getWidth()+":"+ e.target.getHeight();
+          }
+          var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
+
+          updateTable(e.target.kind, e.target.name, pos, size, e.target.id);
+
         }
       });
 
         <% @tables.each do |tab| %>
-          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>');
+          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>');
         <% end %>
+
+        function updateTable(type, name, pos, size, id)
+        {
+          console.log("this is a: " + type);
+          console.log("your name is: " + name);
+          console.log("this is at: " + pos);
+          console.log("this size is: " + size);
+          console.log("your id is: " + id);
+        }
 
     </script>
 
