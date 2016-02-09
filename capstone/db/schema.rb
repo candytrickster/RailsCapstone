@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203170325) do
+ActiveRecord::Schema.define(version: 20160205205514) do
 
   create_table "guest_lists", force: true do |t|
     t.integer  "user_id"
@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 20160203170325) do
   create_table "tables", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.string   "type"
     t.string   "size"
     t.string   "position"
     t.integer  "num_of_seats"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "kind"
   end
 
   create_table "users", force: true do |t|

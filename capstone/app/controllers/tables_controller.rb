@@ -29,13 +29,13 @@ class TablesController < ApplicationController
   # POST /tables
   # POST /tables.json
   def create
-    if(!cookies[:user_name].blank?)
       @user = User.find_by(id: cookies[:user_id])
-      @table = @user.table.new(table_params)
+      @table = @user.tables.new table_params
       @message = 'New Table'
       @log = true
       respond_to do |format|
         if @table.save
+          @table.update_attribute(:kind, params[:kind])
           format.html { redirect_to '/seating' }
           format.json { render :show, status: :created, location: @table }
         else
@@ -43,7 +43,6 @@ class TablesController < ApplicationController
           format.json { render json: @table.errors, status: :unprocessable_entity }
         end
       end
-    end
   end
 
   # PATCH/PUT /tables/1
