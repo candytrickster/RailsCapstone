@@ -8,6 +8,11 @@
   src: url(DidactGothic.ttf);
 }
 
+
+header {
+  min-width: 1650px;
+}
+
 #logout {
   width: 150px;
   text-align: center;
@@ -50,6 +55,7 @@ nav {
   background-color: #75879f;
   margin-left: -8px;
   margin-right: -8px;
+  box-shadow: 0px 5px 10px #999;
 }
 
 nav ul {
@@ -76,10 +82,16 @@ nav a:hover {
   color: #fbbcca;
 }
 
+nav #menu {
+  width: 1050px;
+  margin-left: auto;
+}
+
 ul#menu ul{
   position:absolute;
   display:none;
   padding:10px 0;
+  box-shadow: 5px 6px 10px #999;
 }
 
 ul#menu li:hover ul{
@@ -107,8 +119,9 @@ ul#menu ul li a:hover{
   height: 550px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin: 0px -8px 0px -8px;
+  margin: 15px -8px 0px -8px;
   overflow: hidden;
+  box-shadow: 0px 5px 10px #999;
 }
 
 #countdown p {
@@ -137,11 +150,13 @@ ul#menu ul li a:hover{
 }
 
 #info {
-  background-color: #fce8ee;
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
+  margin-top: 5px;
+  //border-left: 3px solid #fbbcca;
+  //border-right: 3px solid #fbbcca;
 }
 
 #info a {
