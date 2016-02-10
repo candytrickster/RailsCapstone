@@ -131,7 +131,7 @@
           window.open("", "popupWindow", "width=600,height=600");
         }
 
-      function create(type, name, pos, size, id)
+      function create(type, name, pos, size, id, seats)
       {
         var sizes = size.split(":");
         var positions = pos.split(":");
@@ -157,29 +157,44 @@
                 break;
           case "rec":
             table = new fabric.Rect({
-              width: Number(sizes[0]), height: Number(sizes[1]), fill: '#AB1E3E', originX: 'center', originY: 'center', stroke: "black",strokeWidth: 2
+              width: Number(sizes[0]),
+              height: Number(sizes[1]),
+              fill: '#AB1E3E',
+              originX: 'center',
+              originY: 'center',
+              stroke: "black",
+              strokeWidth: 2
             });
                 break;
           case "head":
             table = new fabric.Rect({
-              width: Number(sizes[0]), height: Number(sizes[1]), fill: '#AB1E3E', originX: 'center', originY: 'center', stroke: "black", strokeWidth: 2
+              width: Number(sizes[0]),
+              height: Number(sizes[1]),
+              fill: '#AB1E3E',
+              originX: 'center',
+              originY: 'center',
+              stroke: "black",
+              strokeWidth: 2
             });
                 break;
           default:
                 break;
         }
+
         var group = new fabric.Group([ table, text ], {
           left: Number(positions[0]),
           top: Number(positions[1]),
           angle: Number(positions[2])
         });
 
+
         group.toObject = (function(toObject) {
           return function() {
             return fabric.util.object.extend(toObject.call(this), {
               name: this.name,
               kind: this.kind,
-              id: this.id
+              id: this.id,
+              seats: this.seats
             });
           };
         })(group.toObject);
@@ -187,6 +202,105 @@
         group.name = name;
         group.kind = type;
         group.id = id;
+        group.seats = seats;
+
+        for(var i = 0; i < Number(seats); i++)
+        {
+          if(type == 'head')
+          {
+            var top = 0 - ((group.height/2)+25);
+            var left = (group.width/(Number(seats)+1))*i;
+            group.add(new fabric.Circle({
+              radius: 15,
+              fill: '#AB1E3E',
+              left: (left - group.width/2)+(group.width/(Number(seats)+1)),
+              top: top,
+              originX: 'center',
+              originY: 'center',
+              stroke: "black",
+              strokeWidth: 2
+            }));
+          }
+          if(type == 'rec')
+          {
+            if(i == 0)
+            {
+              var left = 0 - ((group.width/2)+25);
+              group.add(new fabric.Circle({
+                radius: 15,
+                fill: '#AB1E3E',
+                left: left,
+                top: 0,
+                originX: 'center',
+                originY: 'center',
+                stroke: "black",
+                strokeWidth: 2
+              }));
+            }
+            else if(i == 1)
+            {
+              var left = ((group.width/2)+25);
+              group.add(new fabric.Circle({
+                radius: 15,
+                fill: '#AB1E3E',
+                left: left,
+                top: 0,
+                originX: 'center',
+                originY: 'center',
+                stroke: "black",
+                strokeWidth: 2
+              }));
+            }
+            else
+            {
+              var topSeats = (Number(seats)-2)/2;
+              if(i <= (topSeats+1))
+              {
+                var top = 0 - ((group.height/2)+25);
+                var left = (group.width/(topSeats+1))*i;
+                group.add(new fabric.Circle({
+                  radius: 15,
+                  fill: '#AB1E3E',
+                  left: (left - group.width/2)-(group.width/(topSeats+1)),
+                  top: top,
+                  originX: 'center',
+                  originY: 'center',
+                  stroke: "black",
+                  strokeWidth: 2
+                }));
+              }
+              else
+              {
+                var top = ((group.height/2)+25);
+                var left = (group.width/(topSeats+1))*i;
+                group.add(new fabric.Circle({
+                  radius: 15,
+                  fill: '#AB1E3E',
+                  left: (left - group.width/2)-(group.width),
+                  top: top,
+                  originX: 'center',
+                  originY: 'center',
+                  stroke: "black",
+                  strokeWidth: 2
+                }));
+              }
+            }
+          }
+          if(type == 'circle')
+          {
+            group.add(new fabric.Circle({
+              radius: 15,
+              fill: '#AB1E3E',
+              left: 0,
+              top: 0,
+              originX: 'center',
+              originY: 'center',
+              stroke: "black",
+              strokeWidth: 2
+            }));
+          }
+        }
+
         c.add(group);
       }
 
@@ -243,22 +357,23 @@
           }
           var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
 
-          updateTable(e.target.kind, e.target.name, pos, size, e.target.id);
+          updateTable(e.target.kind, e.target.name, pos, size, e.target.id, e.target.seats);
 
         }
       });
 
         <% @tables.each do |tab| %>
-          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>');
+          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>','<%= tab.num_of_seats %>');
         <% end %>
 
-        function updateTable(type, name, pos, size, id)
+        function updateTable(type, name, pos, size, id, seats)
         {
-          console.log("this is a: " + type);
-          console.log("your name is: " + name);
-          console.log("this is at: " + pos);
-          console.log("this size is: " + size);
-          console.log("your id is: " + id);
+//          console.log("this is a: " + type);
+//          console.log("your name is: " + name);
+//          console.log("this is at: " + pos);
+//          console.log("this size is: " + size);
+//          console.log("your id is: " + id);
+//          console.log("you can hold: " + seats);
         }
 
     </script>
