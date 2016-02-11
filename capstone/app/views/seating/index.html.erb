@@ -288,11 +288,24 @@
           }
           if(type == 'circle')
           {
+            var s = Number(seats);
+            var radius = (group.width-1)*.65;
+            var angle = parseInt(360/s);
+            var a = angle * i;
+//            var top = radius * Math.sin(a);
+//            var left = radius * Math.cos(a);
+
+//            var left = radius * Math.cos(a * Math.PI / 180);
+//            var top = radius * Math.sin(a * Math.PI / 180);
+
+            var left = radius * Math.cos(2 * Math.PI * i / s);
+            var top = radius * Math.sin(2 * Math.PI * i / s);
+
             group.add(new fabric.Circle({
               radius: 15,
               fill: '#AB1E3E',
-              left: 0,
-              top: 0,
+              left: left,
+              top: top,
               originX: 'center',
               originY: 'center',
               stroke: "black",
@@ -358,8 +371,6 @@
           var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
 
           updateTable(e.target.kind, e.target.name, pos, size, e.target.id, e.target.seats);
-          console.log(e.target.height);
-          console.log(e.target.width);
         }
       });
 
