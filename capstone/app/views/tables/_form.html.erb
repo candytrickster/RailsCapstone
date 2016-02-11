@@ -12,23 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "Name" %>
   </div>
   <div class="field">
-    <input type="text" name="kind">
+    <input type="text" name="kind" placeholder="Type">
   </div>
   <div class="field">
-    <%= f.label :size %><br>
-    <%= f.text_field :size %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br>
-    <%= f.text_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :num_of_seats %><br>
-    <%= f.number_field :num_of_seats %>
+    <%= f.number_field :num_of_seats, placeholder: "Number of Seats", min: 0%>
   </div>
   <div class="actions">
     <%= f.submit %>

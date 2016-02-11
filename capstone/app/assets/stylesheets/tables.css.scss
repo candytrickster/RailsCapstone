@@ -1,0 +1,64 @@
+@font-face {
+  font-family: AlexBrush;
+  src: url(AlexBrush-Regular.ttf);
+}
+
+@font-face {
+  font-family: Didact;
+  src: url(DidactGothic.ttf);
+}
+
+body {
+  background-color: #9871a8;
+}
+
+section {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -20px;
+  background-color: #e4cef4;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+h1 {
+  font-family: AlexBrush;
+  letter-spacing: 3px;
+  font-size: 50px;
+  font-weight: 100;
+  color: #fff;
+  text-align: center;
+}
+
+input[type='text'] {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 30px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+}
+
+input[type='number'] {
+  color: #9871a8;
+  margin-bottom: 30px;
+  height: 25px;
+  font-family: Didact;
+  font-size: 24px;
+  text-align: center;
+}
+
+input[type='submit'] {
+  font-size: 25px;
+  background-color: #7587a1;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 15px 8px 15px;
+  margin-bottom: 30px;
+}
+
+input[type='submit']:hover {
+  background-color: #496787;
+}
