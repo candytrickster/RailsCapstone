@@ -32,6 +32,13 @@ h1 {
   text-align: center;
 }
 
+p {
+  font-family: Didact;
+  color: #7587a1;
+  font-size: 30px;
+  text-align: center;
+}
+
 input[type='text'] {
   color: #9871a8;
   width:400px;
@@ -44,10 +51,17 @@ input[type='text'] {
 input[type='number'] {
   color: #9871a8;
   margin-bottom: 30px;
-  height: 25px;
   font-family: Didact;
   font-size: 24px;
   text-align: center;
+}
+
+select {
+  color: #9871a8;
+  width:400px;
+  margin-bottom: 30px;
+  font-family: Didact;
+  font-size: 24px;
 }
 
 input[type='submit'] {

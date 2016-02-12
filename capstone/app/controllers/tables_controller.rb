@@ -28,11 +28,15 @@ class TablesController < ApplicationController
   def edit
   end
 
+  def success
+    @message = 'Success!'
+    @log = true
+  end
+
   # POST /tables
   # POST /tables.json
   def create
       @user = User.find_by(id: cookies[:user_id])
-      # @table = @user.tables.new(:user_id => @user.id, :name => table_params[:name], :size => '300:150', :position => '100:100:0', :num_of_seats => table_params[:num_of_seats] )
       @table = @user.tables.new table_params
       @message = 'New Table'
       @log = true
@@ -45,7 +49,8 @@ class TablesController < ApplicationController
           else
             @table.update_attribute(:size, '300:150')
           end
-          format.html { redirect_to '/seating' }
+
+          format.html { redirect_to '/success' }
           format.json { render :show, status: :created, location: @table }
         else
           format.html { render :new }
@@ -86,6 +91,6 @@ class TablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
-      params.require(:table).permit(:user_id, :name, :type, :size, :position, :num_of_seats)
+      params.require(:table).permit(:user_id, :name, :kind, :size, :position, :num_of_seats)
     end
 end

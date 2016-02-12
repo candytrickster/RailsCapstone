@@ -397,11 +397,51 @@
           var left = (screen.width/2)-(w/2);
           var top = (screen.height/2)-(h/2);
           popupWindow =  window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+//          popupWindow.onunload = popupClosing;
+//          popupWindow.onbeforeunload = function(){
+//            window.parent.popupClosing();
+//          };
+
+//          popupWindow.addEventListener("beforeunload", function (e) {
+//            popupClosing();
+//          });
+
           return popupWindow
         }
         popupwindow('<%= "/tables/new" %>', 'Create Table', 600, 600);
 
+
+//        pop.onunload() = function(){
+//          window.opener.location.reload();
+//        };
+//        pop.onunload = function(){
+//
+//        };
       }
+      function popupClosing()
+      {
+        window.location.href = window.location.href;
+        alert('About to refresh');
+      }
+
+        function makeNewTable()
+        {
+
+        }
+      function fillPopupBody(popup) {
+        var req = new XMLHttpRequest();
+        req.open("GET","/something/partial_new_form.html",false); // Synchronic request!
+        req.send(null);
+        if( req.status == 200 ) {
+          popup.innerHTML = req.responseText;
+          return true;
+        } else {
+          popup.innerHTML = "<p class='error'>"+req.status+" ("+req.statusText+")</p>";
+          return false;
+        }
+      }
+
     </script>
 
     <aside id="tools">
@@ -409,8 +449,11 @@
       <section id="create_table">
         <button type="submit" id="new_table"><a href="/newTable">+ New Table</a></button>
         <button type="submit" id="new_table" onclick="createTable()">+ New Table</button>
+        <!--<button type="submit" id="new_table" onclick="makeNewTable()">+ New Table</button>-->
+        <!--<button type="submit" id="new_table" onclick="showTableForm()">+ New Table</button>-->
       </section>
     </aside>
+
   </section>
 </body>
 <footer>
