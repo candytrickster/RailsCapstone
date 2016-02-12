@@ -15,7 +15,11 @@
     <%= f.text_field :name, placeholder: "Name" %>
   </div>
   <div class="field">
-    <input type="text" name="kind" placeholder="Type">
+    <select name="kind">
+      <option value="rec">Rectangle/Square</option>
+      <option value="circle">Circle</option>
+      <option value="head">Head</option>
+    </select>
   </div>
   <div class="field">
     <%= f.number_field :num_of_seats, placeholder: "Number of Seats", min: 0%>

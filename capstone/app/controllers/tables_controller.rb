@@ -1,6 +1,8 @@
 class TablesController < ApplicationController
   before_action :set_table, only: [:show, :edit, :update, :destroy]
 
+  Types = ['rec','circle','head']
+
   # GET /tables
   # GET /tables.json
   def index
@@ -30,12 +32,19 @@ class TablesController < ApplicationController
   # POST /tables.json
   def create
       @user = User.find_by(id: cookies[:user_id])
+      # @table = @user.tables.new(:user_id => @user.id, :name => table_params[:name], :size => '300:150', :position => '100:100:0', :num_of_seats => table_params[:num_of_seats] )
       @table = @user.tables.new table_params
       @message = 'New Table'
       @log = true
       respond_to do |format|
         if @table.save
           @table.update_attribute(:kind, params[:kind])
+          @table.update_attribute(:position, '100:100:0')
+          if(params[:kind] == 'circle')
+            @table.update_attribute(:size, '80')
+          else
+            @table.update_attribute(:size, '300:150')
+          end
           format.html { redirect_to '/seating' }
           format.json { render :show, status: :created, location: @table }
         else
