@@ -59,6 +59,11 @@ class TablesController < ApplicationController
       end
   end
 
+  def fixSize(id, pos)
+    @table = Table.where('id' => id)
+    @table.update_attribute(:position, pos)
+  end
+
   # PATCH/PUT /tables/1
   # PATCH/PUT /tables/1.json
   def update

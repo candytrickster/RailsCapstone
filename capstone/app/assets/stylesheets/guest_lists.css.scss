@@ -47,7 +47,7 @@
 nav {
   height: 50px;
   margin-top: -10px;
-  background-color: #75879f;
+  background: linear-gradient(#75879f, #496787);
   margin-left: -8px;
   margin-right: -8px;
 }
@@ -76,10 +76,17 @@ nav a:hover {
   color: #fbbcca;
 }
 
+nav #menu {
+  width: 1060px;
+  margin-left: auto;
+}
+
 ul#menu ul{
   position:absolute;
   display:none;
   padding:10px 0;
+  box-shadow: 5px 6px 10px #999;
+  z-index: 50;
 }
 
 ul#menu li:hover ul{
@@ -103,16 +110,16 @@ ul#menu ul li a:hover{
 }
 
 footer {
-  background-color: #7587a1;
+  background: linear-gradient(#75879f, #496787);
   margin: 0px -8px 0px -8px;
   overflow: hidden;
-  height: 150px;
+  height: 100px;
   text-align: right;
 }
 
 footer p {
   padding-right: 20px;
-  margin-top: -230px;
+  margin-top: -180px;
   font-family: Didact;
   color: #fbbcca;
 }
@@ -128,10 +135,10 @@ footer a:hover {
 
 #congrats {
   text-align: left;
-  margin-left: 135px;
+  margin-left: 50px;
   font-family: AlexBrush;
-  font-size: 100px;
-  margin-top: 20px;
+  font-size: 80px;
+  margin-top: 5px;
   color: #fbbcca;
   letter-spacing: 5px;
 }
@@ -144,7 +151,6 @@ footer a:hover {
   margin-left: auto;
   margin-right: auto;
   background-color: #fce8ee;
-  //overflow: hidden;
 }
 
 table {
@@ -261,13 +267,6 @@ input[type='submit']:hover {
   padding-bottom: 20px;
 }
 
-//#email_all {
-//  width: 230px;
-//  padding: 10px;
-//  margin: 20px 15px 50px auto;
-//  border-radius: 20px;
-//}
-
 #send {
   width: 168px;
 }
@@ -346,8 +345,8 @@ select {
   padding-top: 40px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fce8ee;
-  height: 620px;
+  background: linear-gradient(#fff, #fce8ee, #fbbcca);
+  height: 650px;
 }
 
 #coming_soon p {

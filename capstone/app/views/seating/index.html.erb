@@ -29,24 +29,14 @@
             </ul>
           </li>
           <li><a href="/budget">Budget</a></li>
-          <li><a href="/checklist">Checklist</a></li>
           <li><a href="/invite">Invitation Tracker</a>
             <ul class="submenu">
               <li><a href="/invite">Guest List</a></li>
               <li><a href="/createInvites">Create Invites</a></li>
             </ul>
           </li>
-          <li><a href="/ideaFolder">Idea Folder</a></li>
           <li><a href="/registry">Registry</a></li>
           <li><a href="/color">Important Dates</a>
-          <li><a href="/examples">Examples</a>
-            <ul class="submenu">
-              <li><a href="">Ceremony</a></li>
-              <li><a href="">Reception</a></li>
-              <li><a href="">Color&nbsp;&nbsp;Schemes</a></li>
-              <li><a href="">Themes</a></li>
-            </ul>
-          </li>
           <li id="active"><a href="/seating">Seating</a></li>
           <li><a href="/attire">Attire</a>
             <ul class="submenu">
@@ -57,10 +47,6 @@
               <li><a href="">Accessories</a></li>
             </ul>
           </li>
-          <li><a href="/themes">Locations</a></li>
-          <li><a href="/songs">Songs</a></li>
-          <li><a href="/editCountdown">Edit Countdown</a></li>
-          <li><a href="/faq">FAQ</a></li>
         </ul>
     <% end %>
   </nav>
@@ -137,7 +123,9 @@
           originX: 'center',
           originY: 'center',
           fill: '#fff',
-          fontFamily: 'Didact'
+          fontFamily: 'Didact',
+          stroke: '000',
+          strokeWidth:.5
         });
         switch(type)
         {
@@ -368,28 +356,15 @@
           create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>','<%= tab.num_of_seats %>');
         <% end %>
 
-        function updateTable(type, name, pos, size, id, seats)
-        {
+      function updateTable(type, name, pos, size, id, seats)
+      {
+        console.log("about to");
 
-//          console.log("this is a: " + type);
-//          console.log("your name is: " + name);
-//          console.log("this is at: " + pos);
-//          console.log("this size is: " + size);
-//          console.log("your id is: " + id);
-//          console.log("you can hold: " + seats);
-        }
+      }
 
-      function fillPopupBody(popup) {
-        var req = new XMLHttpRequest();
-        req.open("GET","/invite",false); // Synchronic request!
-        req.send(null);
-        if( req.status == 200 ) {
-          popup.innerHTML = req.responseText;
-          return true;
-        } else {
-          popup.innerHTML = "<p class='error'>"+req.status+" ("+req.statusText+")</p>";
-          return false;
-        }
+      function onSuccess()
+      {
+        alert("you did it");
       }
 
       function createTable() {
@@ -397,49 +372,9 @@
           var left = (screen.width/2)-(w/2);
           var top = (screen.height/2)-(h/2);
           popupWindow =  window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-
-//          popupWindow.onunload = popupClosing;
-//          popupWindow.onbeforeunload = function(){
-//            window.parent.popupClosing();
-//          };
-
-//          popupWindow.addEventListener("beforeunload", function (e) {
-//            popupClosing();
-//          });
-
           return popupWindow
         }
         popupwindow('<%= "/tables/new" %>', 'Create Table', 600, 600);
-
-
-//        pop.onunload() = function(){
-//          window.opener.location.reload();
-//        };
-//        pop.onunload = function(){
-//
-//        };
-      }
-      function popupClosing()
-      {
-        window.location.href = window.location.href;
-        alert('About to refresh');
-      }
-
-        function makeNewTable()
-        {
-
-        }
-      function fillPopupBody(popup) {
-        var req = new XMLHttpRequest();
-        req.open("GET","/something/partial_new_form.html",false); // Synchronic request!
-        req.send(null);
-        if( req.status == 200 ) {
-          popup.innerHTML = req.responseText;
-          return true;
-        } else {
-          popup.innerHTML = "<p class='error'>"+req.status+" ("+req.statusText+")</p>";
-          return false;
-        }
       }
 
     </script>
@@ -447,10 +382,7 @@
     <aside id="tools">
       <p>Tools</p>
       <section id="create_table">
-        <button type="submit" id="new_table"><a href="/newTable">+ New Table</a></button>
         <button type="submit" id="new_table" onclick="createTable()">+ New Table</button>
-        <!--<button type="submit" id="new_table" onclick="makeNewTable()">+ New Table</button>-->
-        <!--<button type="submit" id="new_table" onclick="showTableForm()">+ New Table</button>-->
       </section>
     </aside>
 
