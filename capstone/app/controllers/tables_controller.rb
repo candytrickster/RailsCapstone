@@ -59,15 +59,15 @@ class TablesController < ApplicationController
       end
   end
 
-  def fixSize(id, pos)
-    @table = Table.where('id' => id)
-    @table.update_attribute(:position, pos)
-  end
-
   # PATCH/PUT /tables/1
   # PATCH/PUT /tables/1.json
   def update
     respond_to do |format|
+      # var id = params[:id]
+      # var pos = params[:position]
+      # @table = Table.where('id' => id)
+      # @table.update_attribute(:position, pos)
+      # puts "Logging to the rails console"
       if @table.update(table_params)
         format.html { redirect_to @table, notice: 'Table was successfully updated.' }
         format.json { render :show, status: :ok, location: @table }

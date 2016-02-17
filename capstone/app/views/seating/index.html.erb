@@ -75,6 +75,9 @@
               <% @numInGroup = 0 %>
             </ul>
         <% end %>
+        <section id="add">
+          <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add_guest' %>
+        </section>
       </section>
     </aside>
     <section id="scrollable">
@@ -358,8 +361,28 @@
 
       function updateTable(type, name, pos, size, id, seats)
       {
-        console.log("about to");
-
+        console.log(pos);
+        $.ajax({
+          type: 'POST',
+          url: '/tables/'+id,
+          data: {id: ''+id, position: ''+pos}
+        });
+//        $.post('/tables/'+id, pos);
+//        $.ajax({
+//          type: "GET",
+//          url: "/tables/"+id,
+//          data: {position: pos},
+//          contentType: "application/json; charset=utf-8",
+//          dataType: "json",
+//          success: function (msg) {
+//            alert("you did it");
+//          },
+//          error: function (errormessage) {
+//
+//            alert("welp... fuck");
+//
+//          }
+//        });
       }
 
       function onSuccess()

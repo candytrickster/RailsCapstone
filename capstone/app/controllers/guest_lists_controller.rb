@@ -82,7 +82,7 @@ class GuestListsController < ApplicationController
     respond_to do |format|
       if @guest_list.save
         @guest_list.update_attribute(:group_id, @guest_list.id)
-        @guest_list.update_attribute(:group_leader, true);
+        @guest_list.update_attribute(:group_leader, true)
 
         if(!params[:mem].blank?)
           params[:mem].each do |value|
@@ -107,6 +107,7 @@ class GuestListsController < ApplicationController
   # PATCH/PUT /guest_lists/1.json
   def update
     respond_to do |format|
+      @group = @guest_list.group_id
       if @guest_list.update(guest_list_params)
         format.html { redirect_to '/invite' }
         format.json { render :show, status: :ok, location: @guest_list }
@@ -114,13 +115,29 @@ class GuestListsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @guest_list.errors, status: :unprocessable_entity }
       end
+      GuestList.all.each do |guest|
+        if(guest.group_id == @group)
+          if guest.update_attribute(:status, @guest_list.status)
+            format.html { redirect_to '/invite' }
+            format.json { render :show, status: :ok, location: @guest_list }
+          else
+            format.html { render :edit }
+            format.json { render json: @guest_list.errors, status: :unprocessable_entity }
+          end
+        end
+      end
     end
   end
 
   # DELETE /guest_lists/1
   # DELETE /guest_lists/1.json
   def destroy
-    @guest_list.destroy
+    @group = @guest_list.group_id
+    GuestList.all.each do |guest|
+      if(guest.group_id == @group)
+        guest.destroy
+      end
+    end
     respond_to do |format|
       format.html { redirect_to guest_lists_url, notice: 'Guest list was successfully destroyed.' }
       format.json { head :no_content }
