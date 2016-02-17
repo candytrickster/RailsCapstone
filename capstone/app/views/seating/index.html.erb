@@ -363,35 +363,22 @@
 
       function updateTable(type, name, pos, size, id, seats)
       {
-        console.log(pos);
         $.ajax({
-          type: 'POST',
-          url: '/tables/'+id,
-          data: {id: ''+id, position: ''+pos}
+          type: "POST",// GET in place of POST
+          contentType: "application/json; charset=utf-8",
+          url: "/tables/"+id,
+          data : JSON.stringify({position:""+pos}),
+          dataType: "json",
+          success: function (result) {
+            //do somthing here
+            console.log("success!!");
+          },
+          error: function (){
+            window.alert("something wrong!");
+          }
         });
-//        $.post('/tables/'+id, pos);
-//        $.ajax({
-//          type: "GET",
-//          url: "/tables/"+id,
-//          data: {position: pos},
-//          contentType: "application/json; charset=utf-8",
-//          dataType: "json",
-//          success: function (msg) {
-//            alert("you did it");
-//          },
-//          error: function (errormessage) {
-//
-//            alert("welp... fuck");
-//
-//          }
-//        });
-      }
 
-      function onSuccess()
-      {
-        alert("you did it");
       }
-
       function createTable() {
         function popupwindow(url, title, w, h) {
           var left = (screen.width/2)-(w/2);

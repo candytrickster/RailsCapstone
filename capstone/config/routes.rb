@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get '/success' => 'tables#success'
 
 
+  post '/tables/:id' => 'tables#update'
+
 
 
 
