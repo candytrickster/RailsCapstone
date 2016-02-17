@@ -67,18 +67,13 @@ class GuestListsController < ApplicationController
     end
   end
 
-  def update_guest_status
-    @guest = GuestList.find(params[:guest_id])
-    @guest.update_attribute(:status, params[:status])
-    #change button from send email invite to sent!
-  end
-
   # POST /guest_lists
   # POST /guest_lists.json
   def create
     @user = User.find_by(id: cookies[:user_id])
     @guest_list = @user.guest_lists.new guest_list_params
     @guest_list.sent = false
+    @guest_list.assigned = '0'
     respond_to do |format|
       if @guest_list.save
         @guest_list.update_attribute(:group_id, @guest_list.id)
@@ -87,9 +82,9 @@ class GuestListsController < ApplicationController
         if(!params[:mem].blank?)
           params[:mem].each do |value|
             if(value[1].blank?)
-              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => @guest_list.name + "'s additional member", :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => @guest_list.name + "'s additional member", :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false, :assigned => '0')
             else
-              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false)
+              @new_guest = @user.guest_lists.new(:user_id => @user.id, :name => value[1], :status => @guest_list.status, :group_id => @guest_list.id, :group_leader => false, :assigned => '0')
             end
             @new_guest.save
           end
@@ -108,7 +103,9 @@ class GuestListsController < ApplicationController
   def update
     respond_to do |format|
       @group = @guest_list.group_id
+      @assign = params[:assigned] || '0'
       if @guest_list.update(guest_list_params)
+        @guest_list.update_attribute(:assigned, @assign)
         format.html { redirect_to '/invite' }
         format.json { render :show, status: :ok, location: @guest_list }
       else
@@ -118,6 +115,7 @@ class GuestListsController < ApplicationController
       GuestList.all.each do |guest|
         if(guest.group_id == @group)
           if guest.update_attribute(:status, @guest_list.status)
+            guest.update_attribute(:assigned, @assign)
             format.html { redirect_to '/invite' }
             format.json { render :show, status: :ok, location: @guest_list }
           else

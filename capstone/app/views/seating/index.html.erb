@@ -69,9 +69,17 @@
                     <% end %>
                 <% end %>
                 <% if @numInGroup == 1 %>
-                    <li draggable="true"><%= guest_list.name %></li>
+                    <% if guest_list.assigned != '0' %>
+                        <li style="background-color: #999999"><%= guest_list.name %></li>
+                    <% else %>
+                        <li draggable="true"><%= guest_list.name %></li>
+                    <% end %>
                 <% else %>
-                    <li draggable="true"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                    <% if guest_list.assigned != '0' %>
+                        <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                    <% else %>
+                        <li draggable="true"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                    <% end %>
                 <% end %>
                 <% @numInGroup = 0 %>
               </ul>
@@ -352,7 +360,6 @@
             size = e.target.getWidth()+":"+ e.target.getHeight();
           }
           var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
-
           updateTable(e.target.kind, e.target.name, pos, size, e.target.id, e.target.seats);
         }
       });
@@ -367,7 +374,7 @@
           type: "POST",// GET in place of POST
           contentType: "application/json; charset=utf-8",
           url: "/tables/"+id,
-          data : JSON.stringify({position:""+pos}),
+          data : JSON.stringify({position:""+pos, size: ""+size}),
           dataType: "json",
           success: function (result) {
             //do somthing here
