@@ -167,6 +167,30 @@ footer a:hover {
   left: 0;
 }
 
+#left {
+  min-width: 250px;
+  float: left;
+  text-align: center;
+}
+
+#add {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #7f578e;
+  box-shadow: 0px 5px 10px #999;
+}
+
+#add:hover {
+  background-color: #63446f;
+}
+
+#add a {
+  text-decoration: none;
+  font-family: Didact;
+  color: #FFF;
+  font-size: 23px;
+}
+
 #guest_list {
   min-width: 250px;
   background-color: #7587a1;
@@ -289,26 +313,6 @@ button[type='submit']:hover {
   //margin-top: -500px;
 }
 
-#add {
-  width: 150px;
-  padding: 5px;
-  border-radius: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #B687C9;
-  box-shadow: 0px 5px 10px #000;
-}
-
-#add:hover {
-  background-color: #9871a8;
-}
-
-#add a {
-  text-decoration: none;
-  font-family: Didact;
-  color: #FFF;
-  font-size: 23px;
-}
 
 
 

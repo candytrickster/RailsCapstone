@@ -56,30 +56,32 @@
     <p>Enter room width: <input value="600" min="0" type="number" name="width" id="width">ft and length: <input value="500" min="0" type="number" name="length" id="length">ft (each square will be 10 square feet) <input type="button" name="create_grid" id="create_grid" onclick="drawBoard()" value="Set"></p>
   </section>
   <section id="seating">
-    <aside id="guest_list">
-      <p>Guest List</p>
-      <h3 id="hint">(Click and Drag to Tables)</h3>
-      <section id="guest">
-        <% @guest_lists.each do |guest_list| %>
-            <ul>
-              <% @all.each do |guest| %>
-                <% if guest.group_id == guest_list.group_id %>
-                  <% @numInGroup += 1 %>
+    <section id="left">
+      <aside id="guest_list">
+        <p>Guest List</p>
+        <h3 id="hint">(Click and Drag to Tables)</h3>
+        <section id="guest">
+          <% @guest_lists.each do |guest_list| %>
+              <ul>
+                <% @all.each do |guest| %>
+                    <% if guest.group_id == guest_list.group_id %>
+                        <% @numInGroup += 1 %>
+                    <% end %>
                 <% end %>
-              <% end %>
-              <% if @numInGroup == 1 %>
-                 <li draggable="true"><%= guest_list.name %></li>
-              <% else %>
-                 <li draggable="true"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
-              <% end %>
-              <% @numInGroup = 0 %>
-            </ul>
-        <% end %>
-        <section id="add">
-          <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add_guest' %>
+                <% if @numInGroup == 1 %>
+                    <li draggable="true"><%= guest_list.name %></li>
+                <% else %>
+                    <li draggable="true"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                <% end %>
+                <% @numInGroup = 0 %>
+              </ul>
+          <% end %>
         </section>
+      </aside>
+      <section id="add">
+        <%= link_to '+ Add Guest', new_guest_list_path, :id => 'add_guest' %>
       </section>
-    </aside>
+    </section>
     <section id="scrollable">
       <canvas id="grid" width="1208" height="1008">
       </canvas>
