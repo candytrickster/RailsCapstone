@@ -73,13 +73,13 @@
                     <% if guest_list.assigned != '0' %>
                         <li style="background-color: #999999"><%= guest_list.name %></li>
                     <% else %>
-                        <li ondragstart="startDragging(<%= guest_list.id %>)"><%= guest_list.name %></li>
+                        <li ondragstart="startDragging('<%= guest_list.id %>')"><%= guest_list.name %></li>
                     <% end %>
                 <% else %>
                     <% if guest_list.assigned != '0' %>
                         <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
                     <% else %>
-                        <li ondragstart="startDragging(<%= guest_list.id %>)"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                        <li ondragstart="startDragging('<%= guest_list.id %>')"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
                     <% end %>
                 <% end %>
                 <% @numInGroup = 0 %>
@@ -342,7 +342,12 @@
 
       c.on({
         'mouse:up': function(e) {
-          if(guestDrag) assignSeat(e.target.id, guestId);
+          if(guestDrag)
+          {
+            assignSeat(e.target.id, guestId);
+            console.log("not assigned yet");
+          }
+          console.log("table: "+e.target.id+" and guest: "+ guestId);
           endDrag();
           throw new Error("Loop holes for days");
         },
@@ -414,10 +419,10 @@
           data : JSON.stringify({position:""+pos, size: ""+size}),
           dataType: "json",
           success: function (result) {
-            console.log("success!!");
+            console.log('success!!');
           },
           error: function (){
-            window.alert("something wrong!");
+            console.log("something wrong!");
           }
         });
       }
@@ -425,7 +430,7 @@
       function assignSeat(tableId, id)
       {
         $.ajax({
-          type: "POST",
+          type: "PUT",
           contentType: "application/json; charset=utf-8",
           url: "/guest_lists/"+id,
           data : JSON.stringify({assigned: ""+tableId}),
@@ -435,6 +440,7 @@
           },
           error: function (){
             console.log("something wrong!");
+            window.location.reload(true);
           }
         });
       }
