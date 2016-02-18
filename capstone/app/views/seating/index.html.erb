@@ -3,6 +3,7 @@
 <head>
   <title>Your Day Your Way</title>
   <%= stylesheet_link_tag "seating.css.scss" %>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <header>
   <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
@@ -62,7 +63,7 @@
         <h3 id="hint">(Click and Drag to Tables)</h3>
         <section id="guest">
           <% @guest_lists.each do |guest_list| %>
-              <ul>
+              <ul id="gl">
                 <% @all.each do |guest| %>
                     <% if guest.group_id == guest_list.group_id %>
                         <% @numInGroup += 1 %>
@@ -72,18 +73,19 @@
                     <% if guest_list.assigned != '0' %>
                         <li style="background-color: #999999"><%= guest_list.name %></li>
                     <% else %>
-                        <li draggable="true"><%= guest_list.name %></li>
+                        <li ondragstart="startDragging(<%= guest_list.id %>)"><%= guest_list.name %></li>
                     <% end %>
                 <% else %>
                     <% if guest_list.assigned != '0' %>
                         <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
                     <% else %>
-                        <li draggable="true"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                        <li ondragstart="startDragging(<%= guest_list.id %>)"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
                     <% end %>
                 <% end %>
                 <% @numInGroup = 0 %>
               </ul>
           <% end %>
+          <div id="dropem" style="background-color: #DADADA; height: 100px;"></div>
         </section>
       </aside>
       <section id="add">
@@ -98,6 +100,35 @@
     </section>
 
     <script>
+
+      var guestDrag = false;
+      var guestId = 0;
+
+      $( "#gl li" ).draggable({
+        appendTo: "body",
+        helper: "clone"
+      });
+      function startDragging(id)
+      {
+        guestId = id;
+        console.log(id);
+        guestDrag = true;
+      }
+
+      function endDrag()
+      {
+        guestDrag = false;
+      }
+
+      $( "#dropem" ).droppable({
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        accept: ":not(.ui-sortable-helper)",
+        drop: function( event, ui ) {
+          $( this ).find( ".placeholder" ).remove();
+          $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+        }
+      });
 
       var c = new fabric.Canvas('tables');
 
@@ -191,7 +222,8 @@
               name: this.name,
               kind: this.kind,
               id: this.id,
-              seats: this.seats
+              seats: this.seats,
+              bug: this.bug
             });
           };
         })(group.toObject);
@@ -309,6 +341,11 @@
       }
 
       c.on({
+        'mouse:up': function(e) {
+          if(guestDrag) assignSeat(e.target.id, guestId);
+          endDrag();
+          throw new Error("Loop holes for days");
+        },
         'object:moving': function(e) {
           e.target.set({
             opacity: 0.5
@@ -371,21 +408,37 @@
       function updateTable(type, name, pos, size, id, seats)
       {
         $.ajax({
-          type: "POST",// GET in place of POST
+          type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "/tables/"+id,
           data : JSON.stringify({position:""+pos, size: ""+size}),
           dataType: "json",
           success: function (result) {
-            //do somthing here
             console.log("success!!");
           },
           error: function (){
             window.alert("something wrong!");
           }
         });
-
       }
+
+      function assignSeat(tableId, id)
+      {
+        $.ajax({
+          type: "POST",
+          contentType: "application/json; charset=utf-8",
+          url: "/guest_lists/"+id,
+          data : JSON.stringify({assigned: ""+tableId}),
+          dataType: "json",
+          success: function (result) {
+            console.log("success!!");
+          },
+          error: function (){
+            console.log("something wrong!");
+          }
+        });
+      }
+
       function createTable() {
         function popupwindow(url, title, w, h) {
           var left = (screen.width/2)-(w/2);

@@ -103,7 +103,10 @@ class GuestListsController < ApplicationController
   def update
     respond_to do |format|
       @group = @guest_list.group_id
-      @assign = params[:assigned] || '0'
+      @assign = '0'
+      if(!params[:assigned].blank?)
+        @assign = params[:assigned]
+      end
       if @guest_list.update(guest_list_params)
         @guest_list.update_attribute(:assigned, @assign)
         format.html { redirect_to '/invite' }
