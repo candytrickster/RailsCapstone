@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
   post '/tables/:id' => 'tables#update'
 
+  get '/validateSeating' => 'seating#numOfSeats'
+
 
 
 

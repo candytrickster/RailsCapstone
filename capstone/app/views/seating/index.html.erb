@@ -429,6 +429,14 @@
 
       function assignSeat(tableId, id)
       {
+//        $.ajax({
+//          type: "GET",
+//          url: '/validateSeating',
+//          data: {tableId: tableId, guestId: id},
+//          dataType: "script"
+//        });
+        console.log("chairs at table: <%= @chairs %>");
+
         $.ajax({
           type: "PUT",
           contentType: "application/json; charset=utf-8",
@@ -443,6 +451,20 @@
             window.location.reload(true);
           }
         });
+      }
+
+      function isValid(tableChairs, guests)
+      {
+        if(Number(guests) > Number(tableChairs))
+        {
+          alert("There are not enough seats at that table for this guest");
+          return false;
+        }
+        else
+        {
+          return true;
+        }
+
       }
 
       function createTable() {

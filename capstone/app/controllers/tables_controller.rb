@@ -81,6 +81,9 @@ class TablesController < ApplicationController
   # DELETE /tables/1
   # DELETE /tables/1.json
   def destroy
+    GuestList.where(:assigned => @table.id).each do |guest|
+      guest.update_attribute(:assigned, '0')
+    end
     @table.destroy
     respond_to do |format|
       format.html { redirect_to tables_url, notice: 'Table was successfully destroyed.' }
