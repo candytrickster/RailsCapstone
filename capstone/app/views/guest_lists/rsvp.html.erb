@@ -8,7 +8,7 @@
 <section id="change_status">
   <img id="guest_logo" src="../../assets/logo2.png">
   <h1 id="guest_message"><%= @message %></h1>
-  <p>You have been invited to the wedding of <span><%= @user.name %></span> and <span><%= @user.fianceeName %></span>. Please select an R.S.V.P. from the dropdown</p>
+  <p><%= @intro %> have been invited to the wedding of <span><%= @user.name %></span> and <span><%= @user.fianceeName %></span>. Please select an R.S.V.P. from the dropdown</p>
   <form accept-charset="UTF-8" method="post">
     <input name="utf8" type="hidden" value="&#x2713;">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">

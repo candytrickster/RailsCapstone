@@ -18,7 +18,7 @@
 }
 
 #log {
-  background-image: url("signupCover.jpg");
+  background-image: url("signupCover3.jpg");
   background-repeat: no-repeat;
   height: 1000px;
   background-size: 100% 100%;
@@ -65,11 +65,19 @@ input[type='password'] {
   margin-right: auto;
 }
 
+#t {
+  font-family: AlexBrush;
+  font-size: 100px;
+  color: #420f55;
+  margin-bottom: 50px;
+}
+
 #title {
   font-family: AlexBrush;
   font-size: 100px;
   color: #420f55;
   margin-bottom: 50px;
+  padding-top: 100px;
 }
 
 section {
@@ -80,10 +88,15 @@ section {
 
 #login {
   width: 700px;
+  height: 550px;
   text-align: center;
-  margin-top: 100px;
+  //margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
+  //background-color: rgba(117,135,161,.8);
+  background-color: rgba(255,255,255,.6);
+  border-radius: 14px;
+  padding: 20px;
 }
 
 #login #title {

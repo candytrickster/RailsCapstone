@@ -54,6 +54,12 @@ class GuestListsController < ApplicationController
     @guest = GuestList.find(params[:guest_id])
     @user = User.find(@guest.user_id)
     @message = 'Hello ' + @guest.name
+    @members = GuestList.where('group_id = ? AND user_id = ?', @guest.group_id, @user.id).count
+    if(@members > 1)
+      @intro = 'You and ' + (@members-1).to_s + ' others'
+    else
+      @intro = 'You'
+    end
   end
 
   def send_mail
@@ -64,6 +70,15 @@ class GuestListsController < ApplicationController
       @log = true
       RsvpMailer.guest_invite(@guest).deliver
       redirect_to '/invite'
+    end
+  end
+
+  def update_guest_status
+    @guest = GuestList.find(params[:guest_id])
+    GuestList.all.each do |guest|
+      if(guest.group_id == @guest.group_id)
+        guest.update_attribute(:status, params[:status])
+      end
     end
   end
 
