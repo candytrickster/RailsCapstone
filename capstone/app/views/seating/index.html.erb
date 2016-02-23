@@ -93,7 +93,7 @@
                 <% @numInGroup = 0 %>
               </ul>
           <% end %>
-          <div id="dropem" style="background-color: #DADADA; height: 100px;"></div>
+          <!--<div id="dropem" style="background-color: #DADADA; height: 100px;"></div>-->
         </section>
       </aside>
       <section id="add">
@@ -418,6 +418,27 @@
         }
       });
 
+      if ("Event" in window) {
+        // Listen to double click event on canvas element
+        Event.add(c.upperCanvasEl, 'dblclick', function (e, self) {
+          var target = c.findTarget(e);
+          if (target) {
+            console.log(target + 'dblclick inside object');
+          } else {
+            console.log('dblclick outside object');
+          }
+
+          /*
+           var target = canvas.getActiveObject();
+           if (target) {
+           console.log('dblclick inside object');
+           } else {
+           console.log('dblclick outside object');
+           }
+           */
+        });
+      }
+
 
 
         <% @tables.each do |tab| %>
@@ -533,6 +554,6 @@
 </body>
 <footer>
   <p id="congrats">Congratulations!</p>
-  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a target="_blank" href="https://www.linkedin.com/in/tracie-wamsley-a0435b107">Tracie Wamsley</a> All Rights Reserved Images from <a href="www.flickr.com">Flickr</a></p>
+  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a target="_blank" href="https://www.linkedin.com/in/tracie-wamsley-a0435b107">Tracie Wamsley</a> All Rights Reserved Images from <a target="_blank" href="https://www.flickr.com/">Flickr</a></p>
 </footer>
 </html>
