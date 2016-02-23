@@ -71,13 +71,21 @@
                 <% end %>
                 <% if @numInGroup == 1 %>
                     <% if guest_list.assigned != '0' %>
-                        <li style="background-color: #999999"><%= guest_list.name %></li>
+                        <% @tables.each do |tab| %>
+                          <% if Integer(tab.id) == Integer(guest_list.assigned) %>
+                                <li style="background-color: #999999"><%= guest_list.name %> <br>(assigned to table: <%= tab.name %>)</li>
+                          <% end %>
+                        <% end %>
                     <% else %>
                         <li ondragstart="startDragging('<%= guest_list.id %>')"><%= guest_list.name %></li>
                     <% end %>
                 <% else %>
                     <% if guest_list.assigned != '0' %>
-                        <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
+                        <% @tables.each do |tab| %>
+                            <% if Integer(tab.id) == Integer(guest_list.assigned) %>
+                                <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %> <br> (assigned to table: <%= tab.name %>)</li>
+                            <% end %>
+                        <% end %>
                     <% else %>
                         <li ondragstart="startDragging('<%= guest_list.id %>')"><%= guest_list.name %> + <%= @numInGroup-1 %></li>
                     <% end %>
@@ -352,15 +360,8 @@
           endDrag();
           throw new Error("Loop holes for days");
         },
-        'mouse:over': function(e) {
-          console.log("Everyday I'm hovering");
-          showImageTools(e.target);
-        },
         'mouse:move': function(e) {
-          showImageTools(e.target);
-        },
-        'mouse:out': function(e) {
-          $('#imageDialog').remove();
+//          showImageTools(e.target, e.target.id);
         },
         'object:moving': function(e) {
           e.target.set({
@@ -490,49 +491,28 @@
         popupwindow('<%= "/tables/new" %>', 'Create Table', 600, 600);
       }
 
+      function showImageTools (e, id) {
 
-
-      function showImageTools (e) {
-
-//        $.ajax({
-//          type: "POST",
-//          contentType: "application/json; charset=utf-8",
-//          url: "/getTableId/"+ e.id,
-//          dataType: "json",
-//          success: function (result) {
-//            console.log('success!!');
-//          },
-//          error: function (){
-//            console.log("something wrong!");
-//          }
-//        });
 
         if (!$('#imageDialog').length) {
           $('body').append("<div id='imageDialog' style='position: absolute; top: 0; left: 0'><ul><% @guest_lists.each do |guest_list| %><% @all.each do |guest| %><% if guest.group_id == guest_list.group_id %><% @numInGroup += 1 %><% end %><% end %><% if @numInGroup == 1 %><% if guest_list.assigned != '0' %><li><%= guest_list.name %></li><% end %><% else %><% if guest_list.assigned != '0' %><li><%= guest_list.name %> + <%= @numInGroup-1 %></li><% end %><% end %><% @numInGroup = 0 %><% end %></ul></div>");
         }
-
         moveImageTools(e);
-
       }
 
       function moveImageTools (e) {
         var w = $('#imageDialog').width();
         var h = $('#imageDialog').height();
-        //var e = canvas.getActiveObject();
-        //var e = canvas._setCursorFromEvent();
         var coords = getObjPosition(e);
-        // -1 because we want to be inside the selection body
         var top = coords.bottom - h - 1;
         var left = coords.right - w - 1;
         $('#imageDialog').show();
         $('#imageDialog').css({top: top, left: left});
       }
+
       function getObjPosition (e) {
-        // Get dimensions of object
         var rect = e.getBoundingRect();
-        // We have the bounding box for rect... Now to get the canvas position
         var offset = c.calcOffset();
-        // Do the math - offset is from $(body)
         var bottom = offset._offset.top + rect.top + rect.height;
         var right = offset._offset.left + rect.left + rect.width;
         var left = offset._offset.left + rect.left;

@@ -10,7 +10,7 @@ class SeatingController < ApplicationController
       @numInGroup = 0
       @tables = Table.where('user_id' => cookies[:user_id])
       @user = User.find_by(id: cookies[:user_id])
-      @table = @user.tables.new
+
 
     end
   end
@@ -25,7 +25,7 @@ class SeatingController < ApplicationController
   end
 
   def getTableId
-    @table = Table.where(params[:tableId])
+    @table = Table.where(params[:id])
     @tableId = @table.id
   end
 

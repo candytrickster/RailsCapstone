@@ -150,11 +150,16 @@ footer a:hover {
   font-family: Didact;
   font-size: 35px;
   color: #fff;
-  -webkit-text-stroke: 1px black;
 }
 
 #imageDialog ul {
-  list-style-type: none;
+  background-color: #63446f;
+  border-radius: 14px;
+}
+
+#imageDialog ul li {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #seating {
