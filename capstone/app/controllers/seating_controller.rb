@@ -17,11 +17,16 @@ class SeatingController < ApplicationController
 
 
   def numOfSeats
-    @table = Table.where('id' => '30')
+    @table = Table.where(params[:tableId])
     @chairs = @table.num_of_seats
 
-    @guest = GuestList.where('id' => '231')
+    @guest = GuestList.where(params[:id])
     @chairFillers = GuestList.where(:group_id => @guest.id).count
+  end
+
+  def getTableId
+    @table = Table.where(params[:tableId])
+    @tableId = @table.id
   end
 
 end

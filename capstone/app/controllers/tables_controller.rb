@@ -46,6 +46,8 @@ class TablesController < ApplicationController
           @table.update_attribute(:position, '100:100:0')
           if(params[:kind] == 'circle')
             @table.update_attribute(:size, '80')
+          elsif(params[:kind] == 'head')
+            @table.update_attribute(:size, '500:100')
           else
             @table.update_attribute(:size, '300:150')
           end

@@ -146,6 +146,17 @@ footer a:hover {
 
 //seating css
 
+#imageDialog {
+  font-family: Didact;
+  font-size: 35px;
+  color: #fff;
+  -webkit-text-stroke: 1px black;
+}
+
+#imageDialog ul {
+  list-style-type: none;
+}
+
 #seating {
   width: 1800px;
   margin-left: auto;

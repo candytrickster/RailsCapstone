@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>User</th>
+      <th>Id</th>
       <th>Name</th>
       <th>Kind</th>
       <th>Size</th>
@@ -17,6 +18,7 @@
     <% @tables.each do |table| %>
       <tr>
         <td><%= table.user_id %></td>
+        <td><%= table.id %></td>
         <td><%= table.name %></td>
         <td><%= table.kind %></td>
         <td><%= table.size %></td>

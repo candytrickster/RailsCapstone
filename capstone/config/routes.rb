@@ -45,9 +45,9 @@ Rails.application.routes.draw do
 
   post '/tables/:id' => 'tables#update'
 
-  get '/validateSeating' => 'seating#numOfSeats'
+  post '/validateSeating/:tableId/:id' => 'seating#numOfSeats'
 
-
+  post '/getTableId/:tableId' => 'seating#getTableId'
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
