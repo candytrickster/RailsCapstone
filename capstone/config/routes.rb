@@ -43,7 +43,16 @@ Rails.application.routes.draw do
 
   get '/newTable' => 'tables#new'
   get '/success' => 'tables#success'
+
   get '/vendors' => 'vendor#index'
+  get '/cater' => 'vendor#cater'
+  get '/dj' => 'vendor#dj'
+  get '/decoration' => 'vendor#decor'
+  get '/flowers' => 'vendor#flower'
+  get '/officiant' => 'vendor#officiant'
+  get '/photographer' => 'vendor#photo'
+  get '/transportation' => 'vendor#transport'
+  get '/venue' => 'vendor#venue'
 
   post '/tables/:id' => 'tables#update'
 

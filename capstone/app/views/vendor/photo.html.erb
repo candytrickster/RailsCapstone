@@ -3,6 +3,7 @@
 <head>
   <title>Your Day Your Way</title>
   <%= stylesheet_link_tag "home.css.scss" %>
+  <%= javascript_include_tag 'countdown.js' %>
 </head>
 <header>
   <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
@@ -16,7 +17,7 @@
     <% if @log == true %>
         <ul id="menu">
           <li><a href="/home">Home</a></li>
-          <li><a href="/vendors">Vendors</a>
+          <li id="active"><a href="/vendors">Vendors</a>
             <ul class="submenu">
               <li><a href="/dj">DJ</a></li>
               <li><a href="/officiant">Officiants</a></li>
@@ -29,7 +30,7 @@
             </ul>
           </li>
           <li><a href="/budget">Budget</a></li>
-          <li id="active"><a href="/invite">Invitation Tracker</a>
+          <li><a href="/invite">Invitation Tracker</a>
             <ul class="submenu">
               <li><a href="/invite">Guest List</a></li>
               <li><a href="/createInvites">Create Invites</a></li>
@@ -52,10 +53,7 @@
   </nav>
 </header>
 <body>
-<section id="new">
-  <%= render 'form' %>
-  <%= link_to 'Back', guest_lists_path %>
-</section>
+
 </body>
 <footer>
   <p id="congrats">Congratulations!</p>
