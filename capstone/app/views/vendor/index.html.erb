@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Day Your Way</title>
+  <%= stylesheet_link_tag "home.css.scss" %>
+  <%= javascript_include_tag 'countdown.js' %>
+</head>
+<header>
+  <a href="/home"><img id="logo" src="../../assets/logo2.png"></a>
+  <% if @log == true %>
+      <div id="logout">
+        <a href="/">Log out</a>
+      </div>
+  <% end %>
+  <h1 id="message"><%= @message %></h1>
+  <nav>
+    <% if @log == true %>
+        <ul id="menu">
+          <li><a href="/home">Home</a></li>
+          <li id="active"><a href="/vendors">Vendors</a>
+            <ul class="submenu">
+              <li><a href="/dj">DJ</a></li>
+              <li><a href="/officiant">Officiants</a></li>
+              <li><a href="/transportation">Transportation</a></li>
+              <li><a href="/cater">Catering</a></li>
+              <li><a href="/decoration">Decorations</a></li>
+              <li><a href="/flowers">Flowers</a></li>
+              <li><a href="/photographer">Photography/Videography</a></li>
+              <li><a href="/venue">Venue</a></li>
+            </ul>
+          </li>
+          <li><a href="/budget">Budget</a></li>
+          <li><a href="/invite">Invitation Tracker</a>
+            <ul class="submenu">
+              <li><a href="/invite">Guest List</a></li>
+              <li><a href="/createInvites">Create Invites</a></li>
+            </ul>
+          </li>
+          <li><a href="/registry">Registry</a></li>
+          <li><a href="/color">Important Dates</a>
+          <li><a href="/seating">Seating</a></li>
+          <li><a href="/attire">Attire</a>
+            <ul class="submenu">
+              <li><a href="">Bride</a></li>
+              <li><a href="">Bridesmaids</a></li>
+              <li><a href="">Groom</a></li>
+              <li><a href="">Groomsmen</a></li>
+              <li><a href="">Accessories</a></li>
+            </ul>
+          </li>
+        </ul>
+    <% end %>
+  </nav>
+</header>
+<body>
+  <section id="vendors">
+    <section id="top_six">
+      <div class="vendor">
+        <h1 id="title">Catering</h1>
+        <a href="/cater"><img src="../../assets/catering.PNG"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">DJ</h1>
+        <a href="/dj"><img src="../../assets/dj.PNG"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Decoration</h1>
+        <a href="/decoration"><img src="../../assets/decorations.jpg"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Flowers</h1>
+        <a href="/flowers"><img src="../../assets/flower.PNG"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Officiant</h1>
+        <a href="/officiant"><img src="../../assets/officiant.jpg"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Photo</h1>
+        <a href="/photographer"><img src="../../assets/photo.jpg"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Transportation</h1>
+        <a href="/transportation"><img src="../../assets/transport.jpg"></a>
+      </div>
+      <div class="vendor">
+        <h1 id="title">Venue</h1>
+        <a href="/venue"><img src="../../assets/venue.PNG"></a>
+      </div>
+    </section>
+  </section>
+</body>
+<footer>
+  <p id="congrats">Congratulations!</p>
+  <p>Copyright &#169; 2016 Your Day Your Way&#8482; by <a target="_blank" href="https://www.linkedin.com/in/tracie-wamsley-a0435b107">Tracie Wamsley</a> All Rights Reserved Images from <a target="_blank" href="https://www.flickr.com/">Flickr</a></p>
+</footer>
+</html>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'vendor/index'
+
   resources :tables
 
   get 'seating/index'
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
 
   get '/newTable' => 'tables#new'
   get '/success' => 'tables#success'
-
+  get '/vendors' => 'vendor#index'
 
   post '/tables/:id' => 'tables#update'
 

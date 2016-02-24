@@ -418,29 +418,6 @@
         }
       });
 
-      if ("Event" in window) {
-        // Listen to double click event on canvas element
-        Event.add(c.upperCanvasEl, 'dblclick', function (e, self) {
-          var target = c.findTarget(e);
-          if (target) {
-            console.log(target + 'dblclick inside object');
-          } else {
-            console.log('dblclick outside object');
-          }
-
-          /*
-           var target = canvas.getActiveObject();
-           if (target) {
-           console.log('dblclick inside object');
-           } else {
-           console.log('dblclick outside object');
-           }
-           */
-        });
-      }
-
-
-
         <% @tables.each do |tab| %>
           create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>','<%= tab.num_of_seats %>');
         <% end %>
