@@ -71,6 +71,7 @@ class TablesController < ApplicationController
       # @table.update_attribute(:position, pos)
       # puts "Logging to the rails console"
       if @table.update(table_params)
+        @table.update_attribute(:kind, params[:kind])
         format.html { redirect_to @table, notice: 'Table was successfully updated.' }
         format.json { render :show, status: :ok, location: @table }
       else

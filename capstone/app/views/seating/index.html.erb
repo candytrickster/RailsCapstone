@@ -428,7 +428,7 @@
           type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "/tables/"+id,
-          data : JSON.stringify({position:""+pos, size: ""+size}),
+          data : JSON.stringify({position:""+pos, size: ""+size, kind: ""+type, name: ""+name, num_of_seats: ""+seats}),
           dataType: "json",
           success: function (result) {
             console.log('success!!');
@@ -439,16 +439,57 @@
         });
       }
 
+      var KEYCODE_E = 69;
+      var KEYCODE_DEL = 46;
+
+      window.onkeydown = handleKeyDown;
+
+      function handleKeyDown(evt) {
+        if(!evt){ var evt = window.event; }  //browser compatibility
+        switch(evt.keyCode) {
+          case KEYCODE_DEL:
+              console.log("deleting...");
+              var activeObject = c.getActiveObject();
+              if (activeObject)
+              {
+                console.log(activeObject.name);
+                c.remove(activeObject);
+                $.ajax({
+                  type: "DELETE",
+                  contentType: "application/json; charset=utf-8",
+                  url: "/tables/"+activeObject.id,
+                  success: function (result) {
+                    console.log('success!!');
+                  },
+                  error: function (){
+                    console.log("something wrong!");
+                    window.location.reload(true);
+                  }
+                });
+              }
+            break;
+          case KEYCODE_E:
+            var activeObject = c.getActiveObject();
+            if (activeObject)
+            {
+              editTable(activeObject.id);
+            }
+            break;
+        }
+      }
+
+      function editTable(id) {
+        function popupwindow(part1, part2, title, w, h) {
+          var left = (screen.width/2)-(w/2);
+          var top = (screen.height/2)-(h/2);
+          popupWindow =  window.open(part1+id+part2, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+          return popupWindow
+        }
+        popupwindow('<%= "/tables/" %>', '<%= "/edit" %>', 'Edit Table', 600, 600);
+      }
+
       function assignSeat(tableId, id, seats)
       {
-//        $.ajax({
-//          type: "POST",
-//          url: '/validateSeating/'+tableId+"/"+id,
-//          data: JSON.stringify({tableId: tableId, guestId: id}),
-//          dataType: "json"
-//        });
-//        console.log("chairs at table: <%= @chairs %>");
-
         $.ajax({
           type: "PUT",
           contentType: "application/json; charset=utf-8",
@@ -521,9 +562,11 @@
     </script>
 
     <aside id="tools">
-      <p>Tools</p>
+      <p id="head">Tools</p>
       <section id="create_table">
         <button type="submit" id="new_table" onclick="createTable()">+ New Table</button>
+        <p id="help">(To edit, select table and press 'E')</p>
+        <p id="help">(To delete, select table and press 'DEL')</p>
       </section>
     </aside>
 
