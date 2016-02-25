@@ -153,9 +153,9 @@ footer a:hover {
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
-  background: linear-gradient(#fff, #fce8ee, #fbbcca);
+  //background: linear-gradient(#fff, #fce8ee, #fbbcca);
+  background: linear-gradient(#fce8ee, #fbbcca, #fce8ee);
   //background-color: #fce8ee;
-  //position: relative;
 }
 
 .vendor {
@@ -168,24 +168,35 @@ footer a:hover {
 
 #title {
   font-family: Didact;
-  color: #7587a1;
+  color: #496787;
   letter-spacing: 2px;
 }
 
 .vendor img {
   width: 200px;
   height: 200px;
-  border: 2px solid #ce4267;
-  border-radius: 14px;
+  border: 2px solid #fff;
+  border-radius: 100px;
 }
 
-#top_six {
+.vendor img:hover {
+  box-shadow: 0px 10px 10px #999;
+  margin-top: -10px;
+  position: relative;
+}
+
+#top_four {
   width: 1000px;
+  height: 360px;
   margin-left: auto;
   margin-right: auto;
 }
 
-
+#bot_four {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 
