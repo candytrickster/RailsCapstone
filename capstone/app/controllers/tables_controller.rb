@@ -43,6 +43,7 @@ class TablesController < ApplicationController
       respond_to do |format|
         if @table.save
           @table.update_attribute(:kind, params[:kind])
+          @table.update_attribute(:seats_occupied, 0)
           @table.update_attribute(:position, '100:100:0')
           if(params[:kind] == 'circle')
             @table.update_attribute(:size, '80')
@@ -72,6 +73,7 @@ class TablesController < ApplicationController
       # puts "Logging to the rails console"
       if @table.update(table_params)
         @table.update_attribute(:kind, params[:kind])
+        @table.update_attribute(:seats_occupied, params[:seats_occupied])
         format.html { redirect_to @table, notice: 'Table was successfully updated.' }
         format.json { render :show, status: :ok, location: @table }
       else
@@ -102,6 +104,6 @@ class TablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
-      params.require(:table).permit(:user_id, :name, :kind, :size, :position, :num_of_seats)
+      params.require(:table).permit(:user_id, :name, :kind, :size, :position, :num_of_seats, :seats_occupied)
     end
 end

@@ -1,4 +1,5 @@
 class SeatingController < ApplicationController
+
   def index
     if(!cookies[:user_name].blank?)
       @message = 'Seating Chart'
@@ -11,22 +12,48 @@ class SeatingController < ApplicationController
       @tables = Table.where('user_id' => cookies[:user_id])
       @user = User.find_by(id: cookies[:user_id])
 
-
+      @answer = false
     end
   end
 
 
-  def numOfSeats
-    @table = Table.where(params[:tableId])
-    @chairs = @table.num_of_seats
+  def seatAssignValid
+    respond_to do |format|
+      @guest_lists = GuestList.where('user_id' => cookies[:user_id])
 
-    @guest = GuestList.where(params[:id])
-    @chairFillers = GuestList.where(:group_id => @guest.id).count
+      @table = Table.where(params[:tableId])
+      @guest = GuestList.where(params[:id])
+      tableSeats = @table.num_of_seats
+      takenSeats = 0
+      seatsLeft = 0
+      seatsNeeded = GuestList.where(:group_id => @guest.id).count
+
+      @guest_lists.each do |guest|
+        if guest.group_id == @guest.group_id
+          seatsNeeded += 1
+        end
+      end
+
+      @guest_lists.each do |guest|
+        if Integer(guest.assigned) == Integer(@t.id)
+            takenSeats += 1
+        end
+      end
+
+      seatsLeft = (tableSeats - takenSeats)
+
+      if(seatsNeeded > seatsLeft)
+        @answer = false
+      else
+        @answer = true
+      end
+
+      format.html { redirect_to '/seating' }
+      format.json { render '/seating' }
+    end
   end
 
-  def getTableId
-    @table = Table.where(params[:id])
-    @tableId = @table.id
-  end
+
+
 
 end

@@ -74,6 +74,7 @@
                         <% @tables.each do |tab| %>
                           <% if Integer(tab.id) == Integer(guest_list.assigned) %>
                                 <li style="background-color: #999999"><%= guest_list.name %> <br>(assigned to table: <%= tab.name %>)</li>
+                                <button>Unassign</button>
                           <% end %>
                         <% end %>
                     <% else %>
@@ -84,6 +85,7 @@
                         <% @tables.each do |tab| %>
                             <% if Integer(tab.id) == Integer(guest_list.assigned) %>
                                 <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %> <br> (assigned to table: <%= tab.name %>)</li>
+                                <button>Unassign</button>
                             <% end %>
                         <% end %>
                     <% else %>
@@ -414,6 +416,7 @@
             size = e.target.getWidth()+":"+ e.target.getHeight();
           }
           var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
+
           updateTable(e.target.kind, e.target.name, pos, size, e.target.id, e.target.seats);
         }
       });
@@ -490,21 +493,43 @@
 
       function assignSeat(tableId, id, seats)
       {
-        $.ajax({
-          type: "PUT",
-          contentType: "application/json; charset=utf-8",
-          url: "/guest_lists/"+id,
-          data : JSON.stringify({assigned: ""+tableId}),
-          dataType: "json",
-          success: function (result) {
-            console.log("success!!");
-          },
-          error: function (){
-            console.log("something wrong!");
-            window.location.reload(true);
-          }
-        });
+        console.log("init");
+        console.log(<% @answer %>);
+
+//        $.ajax({
+//          type: "POST",
+//          contentType: "application/json; charset=utf-8",
+//          url: "/isValid",
+//          data : JSON.stringify({tableId: ""+tableId, guestId: ""+id, seats: ""+seats}),
+//          dataType: "json",
+//          success: function (result) {
+//            console.log("success woo!!");
+//          },
+//          error: function (){
+//            console.log();
+////            window.location.reload(true);
+//          }
+//        });
+
+
       }
+
+
+//      $.ajax({
+//          type: "PUT",
+//          contentType: "application/json; charset=utf-8",
+//          url: "/guest_lists/"+id,
+//          data : JSON.stringify({assigned: ""+tableId, guestId: ""+id, seats: ""+seats}),
+//          dataType: "json",
+//          success: function (result) {
+//            console.log("success!!");
+//          },
+//          error: function (){
+//            console.log("something wrong!");
+//            window.location.reload(true);
+//          }
+//        });
+//      }
 
       function isValid(tableChairs, guests)
       {
