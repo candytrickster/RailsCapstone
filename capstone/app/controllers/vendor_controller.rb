@@ -31,6 +31,10 @@ class VendorController < ApplicationController
     if(!cookies[:user_name].blank?)
       @message = 'Flowers'
       @log = true
+
+
+
+
     end
   end
 
