@@ -504,11 +504,15 @@
           dataType: "json",
           success: function (result) {
             console.log("success");
-//            console.log('bitch! '+t.name);
+            <% if @answer == true %>
+              console.log('too many!');
+            <% else %>
+            doit(id, tableId, seats);
+            <% end %>
           },
           error: function (xhr, ajaxOptions, thrownError){
 //            window.location.reload(true);
-            console.log(xhr.status);
+            alert('There are not enough seats at that table');
           }
         });
 //        $.getJSON("http://localhost:3000/isValid?{%22tableId%22:%22"+tableId+"%22,%22guestId%22:%22"+id+"%22,%22seats%22:%22"+seats+"%22}", function (data) {
@@ -532,6 +536,23 @@
 
       }
 
+      function doit(id, tableId, seats)
+      {
+        $.ajax({
+          type: "PUT",
+          contentType: "application/json; charset=utf-8",
+          url: "/guest_lists/"+id,
+          data : JSON.stringify({assigned: ""+tableId, guestId: ""+id, seats: ""+seats}),
+          dataType: "json",
+          success: function (result) {
+            console.log("success!!");
+          },
+          error: function (){
+            console.log("something wrong!");
+            window.location.reload(true);
+          }
+        });
+      }
 
       function isValid(tableChairs, guests)
       {
