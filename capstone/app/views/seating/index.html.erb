@@ -495,41 +495,40 @@
       {
         console.log("init");
         console.log(<% @answer %>);
-
-//        $.ajax({
-//          type: "POST",
-//          contentType: "application/json; charset=utf-8",
-//          url: "/isValid",
-//          data : JSON.stringify({tableId: ""+tableId, guestId: ""+id, seats: ""+seats}),
-//          dataType: "json",
-//          success: function (result) {
-//            console.log("success woo!!");
-//          },
-//          error: function (){
-////            window.location.reload(true);
-//          }
-//        });
-//        $.getJSON("http://localhost:3000/isValid?{%22tableId%22:%22"+tableId+"%22,%22guestId%22:%22"+id+"%22,%22seats%22:%22"+seats+"%22}", function (data) {
-//          // console.log( data );
-//          $.each(data, function (i, e) {
-//            console.log(i + ". " + e);
-//          });
-//        });
+        var t = '';
 
         $.ajax({
-          type: "PUT",
-          contentType: "application/json; charset=utf-8",
-          url: "/guest_lists/"+id,
-          data : JSON.stringify({assigned: ""+tableId, guestId: ""+id, seats: ""+seats}),
+          type: "POST",
+          url: "/isValid",
+          data : {tableId: ""+tableId, guestId: ""+id, seats: ""+seats},
           dataType: "json",
           success: function (result) {
-            console.log("success!!");
+            console.log(result);
+//            console.log('bitch! '+t.name);
           },
-          error: function (){
-            console.log("something wrong!");
-            window.location.reload(true);
+          error: function (xhr, ajaxOptions, thrownError){
+//            window.location.reload(true);
+            console.log(xhr.status);
           }
         });
+//        $.getJSON("http://localhost:3000/isValid?{%22tableId%22:%22"+tableId+"%22,%22guestId%22:%22"+id+"%22,%22seats%22:%22"+seats+"%22}", function (data) {
+//           console.log( data );
+//        });
+
+//        $.ajax({
+//          type: "PUT",
+//          contentType: "application/json; charset=utf-8",
+//          url: "/guest_lists/"+id,
+//          data : JSON.stringify({assigned: ""+tableId, guestId: ""+id, seats: ""+seats}),
+//          dataType: "json",
+//          success: function (result) {
+//            console.log("success!!");
+//          },
+//          error: function (){
+//            console.log("something wrong!");
+//            window.location.reload(true);
+//          }
+//        });
 
       }
 

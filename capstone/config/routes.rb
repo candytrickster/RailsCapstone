@@ -58,6 +58,10 @@ Rails.application.routes.draw do
 
   post '/isValid' => 'seating#seatAssignValid'
 
+
+
+  # get '/http://localhost:3000/isValid?{%22tableId%22:%22150%22,%22guestId%22:%22256%22,%22seats%22:%224%22}'
+
   # post '/validateSeating/:tableId/:id' => 'seating#numOfSeats'
   #
   # post '/getTableId/:tableId' => 'seating#getTableId'

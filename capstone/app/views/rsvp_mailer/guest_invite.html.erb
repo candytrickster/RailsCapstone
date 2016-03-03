@@ -1,6 +1,56 @@
-<p>Dear <%= @guest.name %></p>
+<div id="banner">
+  <p id="dear">Dear <%= @guest.name %></p>
+</div>
 
-<p>You have been invited to a wedding by <%= @user.name %> and <%= @user.fianceeName %>. Please follow this <%= link_to 'link', @url %> to R.S.V.P.</p>
+<p id="body">You have been invited to a wedding by <span><%= @user.name %></span> and <span><%= @user.fianceeName %></span>. Please follow this <%= link_to 'link', @url %> to R.S.V.P.</p>
 
-<p>Thank you very much,</p>
-<p>Your Day Your Way Wedding Planner</p>
+<p id="signature">Your Day Your Way Wedding Planner</p>
+
+<style>
+  html p {
+    font-size: 30px;
+    color: #63446f;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #banner {
+    /*background: linear-gradient(#75879f, #496787);*/
+    background: linear-gradient(#9871a8, #63446f);
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  #dear {
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  span {
+    color: #f283a5;
+  }
+
+  a {
+    text-decoration: none;
+    color: #B687C9;
+  }
+
+  #body {
+    width: 800px;
+    text-align: center;
+  }
+
+  #thanks {
+    font-size: 20px;
+    text-align: left;
+  }
+
+  #signature {
+    font-size: 17px;
+    text-align: center;
+  }
+</style>
