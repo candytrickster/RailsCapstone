@@ -74,7 +74,7 @@
                         <% @tables.each do |tab| %>
                           <% if Integer(tab.id) == Integer(guest_list.assigned) %>
                                 <li style="background-color: #999999"><%= guest_list.name %> <br>(assigned to table: <%= tab.name %>)</li>
-                                <button>Unassign</button>
+                                <!--<button>Unassign</button>-->
                           <% end %>
                         <% end %>
                     <% else %>
@@ -85,7 +85,7 @@
                         <% @tables.each do |tab| %>
                             <% if Integer(tab.id) == Integer(guest_list.assigned) %>
                                 <li style="background-color: #999999"><%= guest_list.name %> + <%= @numInGroup-1 %> <br> (assigned to table: <%= tab.name %>)</li>
-                                <button>Unassign</button>
+                                <!--<button>Unassign</button>-->
                             <% end %>
                         <% end %>
                     <% else %>
@@ -503,7 +503,7 @@
           data : {tableId: ""+tableId, guestId: ""+id, seats: ""+seats},
           dataType: "json",
           success: function (result) {
-            console.log(result);
+            console.log("success");
 //            console.log('bitch! '+t.name);
           },
           error: function (xhr, ajaxOptions, thrownError){

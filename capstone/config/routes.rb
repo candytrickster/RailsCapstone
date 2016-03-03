@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 
   post '/tables/:id' => 'tables#update'
 
+
+  get '/isValid' => 'seating#seat'
   post '/isValid' => 'seating#seatAssignValid'
 
 

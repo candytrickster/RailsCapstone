@@ -16,12 +16,12 @@ class SeatingController < ApplicationController
     end
   end
 
+  def seat
+
+  end
 
   def seatAssignValid
-
-    @guest = GuestList.where(:id => params[:id])
-    @table = Table.where(:id => params[:tableId])
-    # put params[:tableId]
+    # put 'table id bro: '
       # tableSeats = @table.num_of_seats
       takenSeats = 0
       seatsLeft = 0
@@ -47,8 +47,38 @@ class SeatingController < ApplicationController
       #   @answer = true
       # end
       # @table.update_attribute(:name, @table.name + ': init')
-
+    #
     if GuestList.where('user_id' => cookies[:user_id])
+      @guest = GuestList.find(params[:guestId])
+      @table = Table.find(params[:tableId])
+      puts @guest.id
+      tableSeats = @table.num_of_seats
+      takenSeats = 0
+      seatsLeft = 0
+      seatsNeeded = GuestList.where(:group_id => @guest.id).count
+      @guest_lists = GuestList.where('user_id = ? AND group_leader = ?', cookies[:user_id], true)
+
+      puts seatsNeeded
+      @guest_lists.each do |guest|
+        if guest.group_id == @guest.group_id
+          seatsNeeded += 1
+        end
+      end
+
+      @guest_lists.each do |guest|
+        if Integer(guest.assigned) == Integer(@table.id)
+            takenSeats += 1
+        end
+      end
+
+      seatsLeft = (tableSeats - takenSeats)
+
+      if(seatsNeeded > seatsLeft)
+        @answer = false
+        @table.update_attribute(:name, @table.name + '('+takenSeats+' out of '+seatsLeft +')')
+      else
+        @answer = true
+      end
       head :no_content   # returns 204 NO CONTENT and triggers success callback
     else
       head :not_found    # returns 404 NOT FOUND and triggers error callback
