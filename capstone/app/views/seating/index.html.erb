@@ -168,7 +168,7 @@
         context.stroke();
       }
 
-      function create(type, name, pos, size, id, seats)
+      function create(type, name, name2, pos, size, id, seats)
       {
         var sizes = size.split(":");
         var positions = pos.split(":");
@@ -176,7 +176,16 @@
         var text = new fabric.Text(name, {
           fontSize: 40,
           originX: 'center',
-          originY: 'center',
+          originY: 'bottom',
+          fill: '#fff',
+          fontFamily: 'Didact',
+          stroke: '000',
+          strokeWidth:.5
+        });
+        var text2 = new fabric.Text(name2, {
+          fontSize: 40,
+          originX: 'center',
+          originY: 'top',
           fill: '#fff',
           fontFamily: 'Didact',
           stroke: '000',
@@ -220,7 +229,7 @@
                 break;
         }
 
-        var group = new fabric.Group([ table, text ], {
+        var group = new fabric.Group([ table, text, text2 ], {
           left: Number(positions[0]),
           top: Number(positions[1]),
           angle: Number(positions[2])
@@ -231,6 +240,7 @@
           return function() {
             return fabric.util.object.extend(toObject.call(this), {
               name: this.name,
+              name2: this.name2,
               kind: this.kind,
               id: this.id,
               seats: this.seats,
@@ -240,6 +250,7 @@
         })(group.toObject);
 
         group.name = name;
+        group.name2 = name2;
         group.kind = type;
         group.id = id;
         group.seats = seats;
@@ -355,15 +366,12 @@
         'mouse:up': function(e) {
           if(guestDrag)
           {
-            assignSeat(e.target.id, guestId, e.target.seats);
+            assignSeat(e.target.id, guestId, e.target.seats, e.target);
             console.log("not assigned yet");
           }
           console.log("table: "+e.target.id+" and guest: "+ guestId);
           endDrag();
           throw new Error("Loop holes for days");
-        },
-        'mouse:move': function(e) {
-//          showImageTools(e.target, e.target.id);
         },
         'object:moving': function(e) {
           e.target.set({
@@ -416,13 +424,13 @@
             size = e.target.getWidth()+":"+ e.target.getHeight();
           }
           var pos = e.target.getLeft()+":"+ e.target.getTop()+":" + e.target.getAngle();
-
+          console.log(e.target.name2);
           updateTable(e.target.kind, e.target.name, pos, size, e.target.id, e.target.seats);
         }
       });
 
         <% @tables.each do |tab| %>
-          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>','<%= tab.num_of_seats %>');
+          create('<%= tab.kind %>', '<%= tab.name %>', '<%= tab.occupied %>', '<%= tab.position %>','<%= tab.size %>','<%= tab.id %>','<%= tab.num_of_seats %>');
         <% end %>
 
       function updateTable(type, name, pos, size, id, seats)
@@ -448,7 +456,7 @@
       window.onkeydown = handleKeyDown;
 
       function handleKeyDown(evt) {
-        if(!evt){ var evt = window.event; }  //browser compatibility
+        if(!evt){ var evt = window.event; }
         switch(evt.keyCode) {
           case KEYCODE_DEL:
               console.log("deleting...");
@@ -491,7 +499,7 @@
         popupwindow('<%= "/tables/" %>', '<%= "/edit" %>', 'Edit Table', 600, 600);
       }
 
-      function assignSeat(tableId, id, seats)
+      function assignSeat(tableId, id, seats, table)
       {
         console.log("init");
         console.log(<% @answer %>);
@@ -511,29 +519,9 @@
             <% end %>
           },
           error: function (xhr, ajaxOptions, thrownError){
-//            window.location.reload(true);
             alert('There are not enough seats at that table');
           }
         });
-//        $.getJSON("http://localhost:3000/isValid?{%22tableId%22:%22"+tableId+"%22,%22guestId%22:%22"+id+"%22,%22seats%22:%22"+seats+"%22}", function (data) {
-//           console.log( data );
-//        });
-
-//        $.ajax({
-//          type: "PUT",
-//          contentType: "application/json; charset=utf-8",
-//          url: "/guest_lists/"+id,
-//          data : JSON.stringify({assigned: ""+tableId, guestId: ""+id, seats: ""+seats}),
-//          dataType: "json",
-//          success: function (result) {
-//            console.log("success!!");
-//          },
-//          error: function (){
-//            console.log("something wrong!");
-//            window.location.reload(true);
-//          }
-//        });
-
       }
 
       function doit(id, tableId, seats)

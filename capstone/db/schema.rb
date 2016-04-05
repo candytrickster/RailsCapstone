@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226191715) do
+ActiveRecord::Schema.define(version: 20160405161330) do
 
   create_table "guest_lists", force: true do |t|
     t.integer  "user_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160226191715) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "kind"
-    t.integer  "seats_occupied"
+    t.string   "occupied"
   end
 
   create_table "users", force: true do |t|

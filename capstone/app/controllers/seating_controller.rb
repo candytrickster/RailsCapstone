@@ -21,33 +21,7 @@ class SeatingController < ApplicationController
   end
 
   def seatAssignValid
-    # put 'table id bro: '
-      # tableSeats = @table.num_of_seats
-      takenSeats = 0
-      seatsLeft = 0
-      # seatsNeeded = GuestList.where(:group_id => @guest.id).count
-
-      # @guest_lists.each do |guest|
-      #   if guest.group_id == @guest.group_id
-      #     seatsNeeded += 1
-      #   end
-      # end
-      #
-      # @guest_lists.each do |guest|
-      #   if Integer(guest.assigned) == Integer(@t.id)
-      #       takenSeats += 1
-      #   end
-      # end
-      #
-      # seatsLeft = (tableSeats - takenSeats)
-      #
-      # if(seatsNeeded > seatsLeft)
-      #   @answer = false
-      # else
-      #   @answer = true
-      # end
-      # @table.update_attribute(:name, @table.name + ': init')
-    #
+    @answer = true
     if GuestList.where('user_id' => cookies[:user_id])
       @guest = GuestList.find(params[:guestId])
       @table = Table.find(params[:tableId])
@@ -73,51 +47,19 @@ class SeatingController < ApplicationController
 
       seatsLeft = (tableSeats - takenSeats)
 
-      if(seatsNeeded > seatsLeft)
+      if(seatsNeeded > (seatsLeft+1))
         @answer = false
-        @table.update_attribute(:name, @table.name + '('+takenSeats+' out of '+seatsLeft +')')
+        @table.update_attribute(:occupied, '('+takenSeats+' out of '+seatsLeft +')')
+        puts 'yo yo yo'
+        puts @table.occupied
       else
         @answer = true
       end
+
       head :no_content   # returns 204 NO CONTENT and triggers success callback
     else
       head :not_found    # returns 404 NOT FOUND and triggers error callback
     end
-
-
-    # respond_to do |format|
-    #   @guest_lists = GuestList.where('user_id' => cookies[:user_id])
-    #
-    #   @table = Table.where(:id => params[:tableId])
-    #   @guest = GuestList.where(:id => params[:id])
-    #   tableSeats = @table.num_of_seats
-    #   takenSeats = 0
-    #   seatsLeft = 0
-    #   seatsNeeded = GuestList.where(:group_id => @guest.id).count
-    #
-    #   @guest_lists.each do |guest|
-    #     if guest.group_id == @guest.group_id
-    #       seatsNeeded += 1
-    #     end
-    #   end
-    #
-    #   @guest_lists.each do |guest|
-    #     if Integer(guest.assigned) == Integer(@t.id)
-    #         takenSeats += 1
-    #     end
-    #   end
-    #
-    #   seatsLeft = (tableSeats - takenSeats)
-    #
-    #   if(seatsNeeded > seatsLeft)
-    #     @answer = false
-    #   else
-    #     @answer = true
-    #   end
-    #   @table.update_attribute(:name, @table.name + ': init')
-    #   format.html { redirect_to '/seating' }
-    #   format.json { render '/seating' }
-    # end
   end
 
 
